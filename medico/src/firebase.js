@@ -28,13 +28,13 @@ const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 const feedback = [];
 const medicaments = [];
-const poids = null;
-const taille = null;
-const age = null;
-const sexe = null;
+const poids = "null";
+const taille = "null";
+const age = "null";
+const sexe = "null";
 
-const description = null;
-const localisation = null;
+const description = "null";
+const localisation = "null";
 
 // sign with Google
 const signInWithGoogle = async (param) => {
