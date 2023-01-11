@@ -8,6 +8,13 @@ import { signInWithGoogle,auth } from "../../firebase";
 function Sign() {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
+
+    function signClient() {
+      signInWithGoogle('user');
+    }
+    function signPharmacie() {
+      signInWithGoogle('pharmacie');
+    }
     
     useEffect(() => {
       if (loading) return;
@@ -16,7 +23,10 @@ function Sign() {
 
 
     return (
-        <button onClick={signInWithGoogle}>sign up with google to start</button>        
+      <>
+        <button onClick={signClient}>client</button>        
+        <button onClick={signPharmacie}>Pharmacie</button>    
+      </>
     )
 }
 
