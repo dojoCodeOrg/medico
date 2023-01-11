@@ -12,6 +12,7 @@ function Home() {
     const [photo, setPhoto] = useState();
     const [name, setName] = useState("");
     const [userid, setUid] = useState("");
+    const [type, setType] = useState('')
 
 
     // fetch username by uid
@@ -20,14 +21,27 @@ function Home() {
             setUid(user.uid)
             setName(user.displayName);
             setPhoto(user.photoURL);
+
+            const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+            const doc = await getDocs(q);
+            const data = doc.docs[0].data();          
+            setType(data.type);
+            
         } catch (err) {
-            console.error(err);
+            const qs = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
+            const docs = await getDocs(qs);
+            const datas = docs.docs[0].data();
+            // console.error(err);
+            setType(datas.type);
         }
     }; 
 
 
-    function switchToDashboard() {
+    function switchToDashboardAsUser() {
         window.location.href = `/user?${name}`
+    }
+    function switchToDashboardAsPharmacie() {
+        window.location.href = `/pharmacie?${name}`
     }
 
     useEffect(() => {
@@ -36,14 +50,26 @@ function Home() {
         fetchUserInfo();
     }, [user, loading]);
 
-    return (
-        <>
 
-        <div>Bienvenue sur Medico {name}</div>
-        <button onClick={switchToDashboard}>profil</button>
-
-        </>
-    )
+    if (type === 'user') {
+        return (
+            <>
+    
+            <div>Bienvenue sur Medico Client {name}</div>
+            <button onClick={switchToDashboardAsUser}>profil</button>
+    
+            </>
+        )        
+    } else if (type === 'pharmacie') {
+        return (
+            <>
+    
+            <div>Bienvenue sur Medico Pharnacie {name}</div>
+            <button onClick={switchToDashboardAsPharmacie}>profil</button>
+    
+            </>
+        )   
+    }
 }
 
 export default Home;

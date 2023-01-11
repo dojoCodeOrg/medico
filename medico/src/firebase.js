@@ -68,6 +68,7 @@ const signInWithGoogle = async (param) => {
             taille: taille,
             description: description,
             age: age,
+            type: param,
             sexe: sexe,
           });
         }
@@ -100,6 +101,7 @@ const signInWithGoogle = async (param) => {
             feedback: feedback,
             description: description,
             localisation: localisation,
+            type: param,
             medicaments: medicaments,
             creationTime: userp.metadata.creationTime,
             lastSeenTime: userp.metadata.lastSignInTime,
