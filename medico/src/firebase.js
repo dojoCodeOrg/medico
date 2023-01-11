@@ -66,6 +66,7 @@ const signInWithGoogle = async (param) => {
             userPhoto: user.photoURL,
             poids: poids,
             taille: taille,
+            description: description,
             age: age,
             sexe: sexe,
           });

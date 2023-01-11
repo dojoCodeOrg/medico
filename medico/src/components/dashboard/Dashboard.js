@@ -16,6 +16,7 @@ function Dashboard() {
     const [sexe, setSexe] = useState("");
     const [lastSeen, setLastSeen]= useState();
     const [creationTime, setCreationTime] = useState();
+    const [description, setDescription] = useState();
 
     let username = null;
     let userid = null;
@@ -53,7 +54,8 @@ function Dashboard() {
         const ctaille = document.querySelector('#taille').textContent;
         const cage = document.querySelector('#age').textContent;
         const csexe = document.querySelector('#sexe').textContent;
-        if (cpoids === poids && ctaille === taille && cage === age && csexe === sexe) {
+        const cdescription = document.querySelector('#description').textContent;
+        if (cpoids === poids && ctaille === taille && cage === age && csexe === sexe && cdescription === description) {
             alert('aucun modification aporte');
             return false;
         } else {
@@ -61,6 +63,7 @@ function Dashboard() {
             setTaille(ctaille);
             setAge(cage);
             setSexe(csexe);
+            setDescription(cdescription);
             try {
                 const userDocByUsername = doc(db, "users", name);
                 await updateDoc(userDocByUsername, {
@@ -68,6 +71,7 @@ function Dashboard() {
                     taille: ctaille,
                     age: cage,
                     sexe: csexe,
+                    description: cdescription,
                 });
             } catch (err) {
                 console.error(err);               
@@ -96,6 +100,7 @@ function Dashboard() {
             taille :<p id="taille" contentEditable="true">{taille}</p>
             age :<p id="age" contentEditable="true">{age}</p>
             sexe :<p id="sexe" contentEditable="true">{sexe}</p>
+            description :<p id="description" contentEditable="true">{description}</p>
             <button onClick={updateUserProfile}>enregistrer les modifs</button>
             <button onClick={logout}>se deconnecter</button>
         </>
