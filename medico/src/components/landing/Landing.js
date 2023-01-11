@@ -3,7 +3,7 @@ function Home() {
     return (
         <div>
             <p>Landing</p>
-            <a href="/Sign">sign up</a><br></br>
+            <a href="/">commencer</a><br></br>
         </div>
     )
 }
