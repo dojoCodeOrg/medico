@@ -97,7 +97,7 @@ function Medicament() {
 
     return (
         <>
-        Medicament
+        <h1>Medicament</h1>
         <div id="medoc_area"></div>
         </>
     )
