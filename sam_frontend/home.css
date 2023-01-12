@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 3rem auto;
+}
+
+.container main {
+    display: flex;
+    text-align: center;
+    width: 1200px;
+    border-radius: 15px;
+}
+
+.container main .client .image img {
+    width: 100%;
+}
+
+.container main .pharmacie .image img {
+    width: 375px;
+}
+
+.container main button {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.container main button{
+    padding: 8px;
+    border-radius: 5px;
+    background-color: green;
+    color: #ffffff;
+}
