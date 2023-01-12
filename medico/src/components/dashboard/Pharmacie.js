@@ -109,7 +109,7 @@ function Pharnacie() {
     }
 
     function switchToCreateMedicament() {
-        window.location.href = `/new/medicament`
+        window.location.href = `/new/medicament?${pharmaciename}`
     }
 
     useEffect(() => {

@@ -18,6 +18,14 @@ function CreateMedicament() {
     const [isReady, setIsready] = useState(true);
 
 
+    let pharmaciename = null;
+    try {
+        pharmaciename = window.location.href.split('?')[1];
+    } catch (error) {
+        pharmaciename = 0;
+        console.log(error)
+    }
+
     const fetchPharmacieMedicaments = async () => {
         try {            
             const q = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
@@ -53,13 +61,12 @@ function CreateMedicament() {
                     console.log(`On a deja ${key} questions`);
                     let new_medoc = {};
                     new_medoc[key] = {name:name,description:description, price:price.split(','), date, fileUrl};
-                    console.log(new_medoc);
                     medicament.push(new_medoc);
-                    // const userDocByUsername = doc(db, "pharmacies", name);
-                    // await updateDoc(userDocByUsername, {
-                    //     medicament: medicament
-                    // });
-                    // window.location = `/medicament?${+key}!${user?.uid}`;
+                    const userDocByUsername = doc(db, "pharmacies", pharmaciename);
+                    await updateDoc(userDocByUsername, {
+                        medicament: medicament
+                    });
+                    window.location = `/medicament?${key}!${user?.uid}`;
                 }            
     
             } catch (error) {
