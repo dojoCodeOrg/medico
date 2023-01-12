@@ -13,7 +13,11 @@ function Pharnacie() {
     const [lastSeen, setLastSeen]= useState('');
     const [creationTime, setCreationTime] = useState('');
     const [description, setDescription] = useState('');
-    const [type, setType] = useState('')
+    const [type, setType] = useState('');
+    const [localisation, setLocalisation] = useState('');
+    const [email, setEmail] = useState('');
+
+
 
     let pharmaciename = null;
     let pharmacieid = null;
@@ -38,6 +42,8 @@ function Pharnacie() {
             setPhoto(userPhotoFetch);       
             setType(data.type);
             setDescription(data.description);
+            setEmail(data.email);
+            setLocalisation(data.localisation);
         } catch (err) {
             console.error(err);
         }
@@ -46,8 +52,9 @@ function Pharnacie() {
 
     const updatePharmacieProfile = async () => {
         const cname = document.querySelector('#name').textContent;
+        const clocalisation = document.querySelector('#localisation').textContent;
         const cdescription = document.querySelector('#description').textContent;
-        if (cname === name && cdescription === description) {
+        if (cname === name && cdescription === description && clocalisation === localisation) {
             alert('aucun modification aporte');
             return false;
         } else {
@@ -58,6 +65,7 @@ function Pharnacie() {
                 await updateDoc(userDocBypharmaciename, {
                     name: cname,               
                     description: cdescription,
+                    localisation: clocalisation,
                 });
             } catch (err) {
                 console.error(err);               
@@ -82,6 +90,8 @@ function Pharnacie() {
             <p>inscrit le : {creationTime}</p>
             <p>derniere connexion : {lastSeen}</p>
             <h2>Mes info</h2>
+            <p id="email">{email}</p>
+            localisation :<p id="localisation" contentEditable="true">{localisation}</p>
             description :<p id="description" contentEditable="true">{description}</p>
             <button onClick={updatePharmacieProfile}>enregistrer les modifs</button>
             <button onClick={logout}>se deconnecter</button>

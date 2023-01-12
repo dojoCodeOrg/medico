@@ -45,6 +45,7 @@ function Dashboard() {
             setAge(data.age);
             setSexe(data.sexe);
             setType(data.type);
+            setDescription(data.description)
         } catch (err) {
             console.error(err);
         }
