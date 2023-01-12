@@ -54,11 +54,32 @@ function Medicament() {
             medoc_area.innerHTML = "";
 
             medicament.forEach((item) => {
-                if (Object.keys(item)[0] === medicamentID) {                    
+                if (Object.keys(item)[0] === medicamentID) {    
+                    let medoc_item = document.createElement('div');
+                    medoc_item.classList.add('medoc-item');
+
                     let medoc_name = document.createElement('div');
-                    medoc_name.classList.add('medoc');
+                    medoc_name.classList.add('medoc-name');
                     medoc_name.innerHTML = item[0].name;
-                    medoc_area.appendChild(medoc_name);
+
+                    let medco_desc = document.createElement('div');
+                    medco_desc.classList.add('medoc-description');
+                    medco_desc.innerHTML = item[0].description;
+
+                    let medco_photo = document.createElement('a');
+                    medco_photo.classList.add('medoc');
+                    medco_photo.src = item[0].photo;
+
+                    let medco_price = document.createElement('div');
+                    medco_price.classList.add('medoc-price');
+                    medco_price.innerHTML = item[0].price;
+
+                    medoc_item.appendChild(medoc_name);
+                    medoc_item.appendChild(medco_desc);
+                    medoc_item.appendChild(medco_price);
+                    medoc_item.appendChild(medco_photo);
+
+                    medoc_area.appendChild(medoc_item);
                 };
             });
         } catch (error) {
