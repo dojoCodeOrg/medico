@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth,logout,db } from "../../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { doc, updateDoc} from "firebase/firestore";
+import { async } from "@firebase/util";
 
 function Pharnacie() {
     const [user, loading] = useAuthState(auth);
@@ -15,7 +16,8 @@ function Pharnacie() {
     const [description, setDescription] = useState('');
     const [type, setType] = useState('');
     const [localisation, setLocalisation] = useState('');
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('');    
+    const [medicament, setMedicament] = useState([]);
 
 
 
@@ -28,13 +30,44 @@ function Pharnacie() {
         console.log(err);
     }
 
+    const fetchPharmacieMedicament = async () => {
+        const medicament_area = document.querySelector('#medicament-area');
+        medicament.forEach(i => {
+            let item = document.createElement('div');
+            item.classList.add('medicament-item');
+
+            let name = document.createElement('a');
+            name.classList.add('medicament-name');
+            name.innerHTML = i.name;
+            name.href = `/medicament?${i.name}`;
+            let description = document.createElement('div');
+            description.classList.add('medicament-description');
+            description.innerHTML = i.description;
+            let image = document.createElement('img');
+            image.classList.add('medicament-image');
+            image.src = i.photo;
+            let price = document.createElement('div');
+            price.classList.add('medicament-price');           
+            price.innerHTML = i.price;
+
+            item.appendChild(name);
+            item.appendChild(description);
+            item.appendChild(image);
+            item.appendChild(price);
+
+            medicament_area.appendChild(item);
+        });
+    };   
+    
+
     const fetchPharmacieInfo = async () => {
         try {            
             const q = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
             const doc = await getDocs(q);
             const data = doc.docs[0].data();
 
-            setName(data.name);            
+            setName(data.name);
+            setMedicament(data.medicament);
             setCreationTime(data.creationTime.split(',')[1].split('GMT'));
             setLastSeen(data.lastSeenTime.split(',')[1].split('GMT'));
             let userPhotoFetch = 0;
@@ -75,11 +108,16 @@ function Pharnacie() {
         fetchPharmacieInfo();
     }
 
+    function switchToCreateMedicament() {
+        window.location.href = `/new/medicament`
+    }
+
     useEffect(() => {
         if (loading) return;
         if (!user) navigate("/sign");
         
         fetchPharmacieInfo();
+        fetchPharmacieMedicament();
 
     }, [user, loading]);
         
@@ -94,6 +132,10 @@ function Pharnacie() {
             localisation :<p id="localisation" contentEditable="true">{localisation}</p>
             description :<p id="description" contentEditable="true">{description}</p>
             <button onClick={updatePharmacieProfile}>enregistrer les modifs</button>
+
+            <h1>Medicaments</h1>
+            <div id="medicament-area"></div>
+            <button onClick={switchToCreateMedicament}>ajouter un medicament</button>
             <button onClick={logout}>se deconnecter</button>
         </>
     )
