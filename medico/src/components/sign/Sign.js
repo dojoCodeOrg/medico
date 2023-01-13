@@ -36,7 +36,7 @@ function Sign() {
                         </div>
                         <h1>Medico Client</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
-                        <button>Client</button>
+                        <button onClick={signClient}>Client</button>
                     </div>
                     <div class="pharmacie">
                         <div class="image">
@@ -44,7 +44,7 @@ function Sign() {
                         </div>
                         <h1>Medico Pharmacie</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
-                        <button>Pharmacie</button>
+                        <button onClick={signPharmacie}>Pharmacie</button>
                     </div>
                 </main>
         </div>
