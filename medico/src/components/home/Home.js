@@ -65,7 +65,7 @@ function Home() {
             <>
     
             <div>Bienvenue sur Medico Pharnacie {name}</div>
-            <button onClick={switchToDashboardAsPharmacie}>profil</button>
+            <button onClick={switchToDashboardAsPharmacie}>profil</button>            
     
             </>
         )   

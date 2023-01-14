@@ -18,6 +18,14 @@ function CreateMedicament() {
     const [isReady, setIsready] = useState(true);
 
 
+    let pharmaciename = null;
+    try {
+        pharmaciename = window.location.href.split('?')[1];
+    } catch (error) {
+        pharmaciename = 0;
+        console.log(error)
+    }
+
     const fetchPharmacieMedicaments = async () => {
         try {            
             const q = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
@@ -42,22 +50,23 @@ function CreateMedicament() {
                     alert("remplissez tout les champs svp");
                     return false;
                 } else {               
+                    let key = 0;
                     const date = new Date();
-                    let key = 1;
                     if (isEmpty(medicament)) {
                         setMedicament({});
                         key = 0;
+                    } else {
+                        let key = medicament[medicament.length -1].length + 1;
                     }
-                    console.log(`On a deja ${medicament.length} questions`);
+                    console.log(`On a deja ${key} questions`);
                     let new_medoc = {};
                     new_medoc[key] = {name:name,description:description, price:price.split(','), date, fileUrl};
                     medicament.push(new_medoc);
-                    console.log(medicament);
-                    // const userDocByUsername = doc(db, "pharmacies", name);
-                    // await updateDoc(userDocByUsername, {
-                    //     medicament: medicament
-                    // });
-                    // window.location = `/medicament?${+key}!${user?.uid}`;
+                    const userDocByUsername = doc(db, "pharmacies", pharmaciename);
+                    await updateDoc(userDocByUsername, {
+                        medicament: medicament
+                    });
+                    window.location = `/medicament?${key}!${user?.uid}`;
                 }            
     
             } catch (error) {
