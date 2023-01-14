@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container main {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.container main .client .image img {
+    width: 60%;
+    margin-top: 5rem;
+}
+
+.container main .pharmacie .image img {
+    width: 38%;
+    margin-top: 5rem;
+}
+
+.container main .client h1, .pharmacie h1 {
+    margin-top: 2rem;
+}
+
+.container main .client p, .pharmacie p {
+    display: flex;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 0 10% 0 10%;
+}
+
+.container main .client, .pharmacie {
+}
+
+.container main .pharmacie {
+    background-color: rgb(83, 231, 83);
+}
+
+.container main button {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.container main button{
+    margin-top: 2rem;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #e67e22;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+@media screen and (max-width:950px){
+    .container main {
+        display: grid;
+    }
+
+    .container main .client p, .pharmacie p {
+        padding: 0 5% 0 5%;
+    }
+}
+
+@media screen and (min-width:750px){
+}
