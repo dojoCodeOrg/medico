@@ -20,7 +20,7 @@ function Home() {
     const [photo, setPhoto] = useState();
     const [name, setName] = useState("");
     const [userid, setUid] = useState("");
-    const [type, setType] = useState('')
+    const [type, setType] = useState("user");
 
 
     // fetch username by uid
@@ -45,6 +45,7 @@ function Home() {
             } catch (error) {
                 console.log(error)
             }
+            console.log(err);
         }
     }; 
  
@@ -56,7 +57,10 @@ function Home() {
     useEffect(() => {
         if (loading) return;        
         if (!user) navigate("/sign");
-        fetchUserInfo();
+
+        setTimeout(() => { 
+            fetchUserInfo();
+        }, 1000);
     }, [user, loading]);
 
 

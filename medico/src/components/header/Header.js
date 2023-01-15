@@ -13,7 +13,7 @@ function Header() {
     const [photo, setPhoto] = useState();
     const [name, setName] = useState("");
     const [userid, setUid] = useState("");
-    const [type, setType] = useState('')
+    const [type, setType] = useState('user');
 
     
      // fetch username by uid
@@ -29,11 +29,16 @@ function Header() {
             setType(data.type);
             
         } catch (err) {
-            const qs = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
-            const docs = await getDocs(qs);
-            const datas = docs.docs[0].data();
-            // console.error(err);
-            setType(datas.type);
+            try {
+                const qs = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
+                const docs = await getDocs(qs);
+                const datas = docs.docs[0].data();
+                // console.error(err);
+                setType(datas.type);
+            } catch (error) {
+                console.log(error)
+            }
+            console.log(err);
         }
     }; 
 
