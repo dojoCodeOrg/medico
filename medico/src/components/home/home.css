@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.home-client {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 140px;
+    font-family: 'Poppins';
+}
+.home-client-hero-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 80px 0;
+}
+.client-hp {
+    text-decoration: overline;
+}
+.hero-h1 {
+    font-size: 2.5rem;
+    margin: 0 0 20px 0;
+}
+.hero-p {
+    font-size: 1rem;
+    max-width: 500px;
+    line-height: 25px;
+}
+.hero-image {
+    width: 16%;
+}
+.home-client-pharmacie-gard {
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+    margin: 60px 0;
+}
+.gard-image {
+    width: 60%;
+}
+.gard-content {
+    display: block;
+    justify-content: right;
+    text-align: right;
+}
+.gard-p {
+    font-size: 1rem;
+    line-height: 25px;
+}
+.gard-button {
+    margin: 20px 0;
+    padding: 10px 25px;
+    border: none;
+    background-color: #6C63FF;
+    border-radius: 5px;
+    color: white;
+}
+.top-medoc {
+    margin: 40px 0;
+    border: 1px solid rgba(134, 130, 130, 0.425);
+    border-radius: 10px;
+    padding: 20px 20px;
+}
+.top-medoc-header {
+    display: flex;
+    justify-content: space-between;
+}
+.top-medoc-content {
+    display: flex;
+    margin: 20px 0;
+    gap: 3rem;
+}
+.item-image {
+    min-width: 120%;
+    border-radius: 5px;
+}
+.pop-all {
+    background-color: #6C63FF;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+.top-medoc-item p {
+    margin: 10px 0;
+}
+.top-medoc-item a {
+    background-color: #6C63FF;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+    .home-client {
+        padding: 60px 40px;
+    }
+   .home-client-hero-section {
+        display: grid;
+        gap: 4rem;
+   }
+   .hero-image {
+        width: 40%;
+   }
+   .hero-p {
+        max-width: 350px;
+   }
+   .top-medoc-content {
+        display: grid;
+        row-gap: 2.5rem;
+        justify-content: left;
+        grid-template-columns: 1fr 1fr;
+   }
+   .item-image {
+        min-width: 75%;
+    }
+    .gard-image {
+        display: none;
+    }
+    .home-client-pharmacie-gard {
+        display: grid;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 450px) {
+    .home-client {
+        padding: 40px 20px;
+    }
+    .top-medoc {
+        max-width: 290px;
+    }
+    .item-image {
+        min-width: 90%;
+    }
+    .pop-p {
+        font-size: 12px;
+    }
+    .top-medoc-header {
+        display: grid;
+        row-gap: 0.4rem;
+    }
+    .top-medoc-content {       
+        grid-template-columns: 1fr;
+        margin: 40px 0 0 0;
+   }
+   .top-medoc-item a {
+    font-size: 13px;
+   }
+   .gard-content {
+    padding: 0 10px;
+   }
+   .gard-p {
+    margin: 10px 0;
+   }
+   .gard-content {
+        display: grid;
+        text-align: left;
+        padding: 0 70px 0 0;        
+    }
+    .gard-button {
+    }
+}

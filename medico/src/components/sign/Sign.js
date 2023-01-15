@@ -36,7 +36,7 @@ function Sign() {
                         </div>
                         <h1 className="h1-sign">Medico Client</h1>
                         <p className="p-sign">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
-                        <button className="button-sign" onClick={signClient}>Client</button>
+                        <button className="button-sign button-client-sign" onClick={signClient}>Client</button>
                     </div>
                     <div class="pharmacie">
                         <div class="image-sign">
