@@ -36,11 +36,15 @@ function Home() {
             setType(data.type);
             
         } catch (err) {
-            const qs = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
-            const docs = await getDocs(qs);
-            const datas = docs.docs[0].data();
-            // console.error(err);
-            setType(datas.type);
+            try {
+                const qs = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
+                const docs = await getDocs(qs);
+                const datas = docs.docs[0].data();
+                // console.error(err);
+                setType(datas.type);
+            } catch (error) {
+                console.log(error)
+            }
         }
     }; 
  
