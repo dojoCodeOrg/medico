@@ -28,23 +28,23 @@ function Sign() {
     return (
       <>       
 
-        <div class="container">
+        <div class="container-sign">
                 <main>
                     <div class="client">
-                        <div class="image">
+                        <div class="image-sign">
                             <img src={group1} alt="" />
                         </div>
-                        <h1>Medico Client</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
-                        <button onClick={signClient}>Client</button>
+                        <h1 className="h1-sign">Medico Client</h1>
+                        <p className="p-sign">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
+                        <button className="button-sign" onClick={signClient}>Client</button>
                     </div>
                     <div class="pharmacie">
-                        <div class="image">
+                        <div class="image-sign">
                             <img src={group2} alt="" />
                         </div>
-                        <h1>Medico Pharmacie</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
-                        <button onClick={signPharmacie}>Pharmacie</button>
+                        <h1 className="h1-sign">Medico Pharmacie</h1>
+                        <p className="p-sign">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
+                        <button className="button-sign button-pharmacie" onClick={signPharmacie}>Pharmacie</button>
                     </div>
                 </main>
         </div>
