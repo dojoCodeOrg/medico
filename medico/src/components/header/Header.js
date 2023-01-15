@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where, doc } from "firebase/firestore";
 
+import "./header.css";
 
 function Header() {
     const [isLoading, setIsLoading] = useState(false);
@@ -43,25 +44,60 @@ function Header() {
     function switchToDashboardAsPharmacie() {
         window.location.href = `/pharmacie?${name}`
     }
+    function switchToHome() {
+        window.location.href = `/`;
+    }
+    function switchToSign() {
+        window.location.href = `/sign`;
+    }
 
     useEffect(() => {
         if (loading) return;        
         fetchUserInfo();
     }, [user, loading]);
 
-
-    if (type === 'user') {
-        return (
-            <>
-            <button onClick={switchToDashboardAsUser}>profil</button>                
-            </>
-        )        
-    } else if (type === 'pharmacie') {
-        return (
-            <>    
-            <button onClick={switchToDashboardAsPharmacie}>profil</button>    
-            </>
-        )   
+    if (!user) {
+        <>
+            <header>
+                <section id="logo">
+                    <h3 onClick={switchToHome} id="medico">Medico</h3>
+                </section>
+                <section id="header-btn">
+                    <button onClick={switchToSign} type="button" class="btn-primary-header" id="login-btn">Se connecter</button>
+                </section>
+            </header>
+            <hr className="hr-header"></hr>
+        </>
+    } else {
+        if (type === 'user') {
+            return (
+                <>
+                    <header>                   
+                        <section id="logo">
+                            <h3 onClick={switchToHome} id="medico">Medico</h3>
+                        </section>
+                        <section id="img-btn">
+                            <img id="user-img" onClick={switchToDashboardAsUser} src={photo} />
+                        </section>
+                    </header>                                     
+                    <hr className="hr-header"></hr>
+                </>
+            )        
+        } else if (type === 'pharmacie') {
+            return (
+                <>    
+                    <header>                   
+                            <section id="logo">
+                                <h3 onClick={switchToHome} id="medico">Medico</h3>
+                            </section>
+                            <section id="img-btn">
+                                <img id="user-img" onClick={switchToDashboardAsPharmacie} src={photo} />
+                            </section>
+                    </header>                                     
+                    <hr className="hr-header"></hr>
+                </>
+            )   
+        }
     }
 }
 

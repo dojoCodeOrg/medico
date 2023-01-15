@@ -5,6 +5,7 @@ import { auth,logout,db } from "../../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { doc, updateDoc} from "firebase/firestore";
 import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 import "./dashboard.css";
 
@@ -129,8 +130,8 @@ function Dashboard() {
                                 Infos :<p id="description" contentEditable="true">{description}</p>
                             </div>
                         </div>    
-                        <button onClick={updateUserProfile}>enregistrer les modifs</button>
-                        <button onClick={logout}>se deconnecter</button>
+                        <button className="dash-btn" onClick={updateUserProfile}>enregistrer les modifs</button>
+                        <button className="dash-btn" onClick={logout}>se deconnecter</button>
                     </div>   
                     <div className="panier">
                         <h2>Panier</h2>
@@ -164,6 +165,8 @@ function Dashboard() {
                         <button className="commande-validator">Passer commande</button>
                     </div>                             
             </div> 
+
+            <Footer />
         </>
     )
 }

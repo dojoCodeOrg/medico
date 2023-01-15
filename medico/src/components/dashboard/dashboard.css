@@ -5,6 +5,7 @@
     gap: 7rem;
     padding: 50px 50px;
 }
+
 .user-dash-content {
     display: grid;
     justify-content: left;
@@ -43,7 +44,7 @@
     text-decoration: underline;
     min-width: 20px;
 }
-.user-dash-content button {
+.dash-btn {
     border: none;
     padding: 10px 20px;
     background-color: #6C63FF;
@@ -51,6 +52,24 @@
     color: white;
     margin: 0 0 10px 0;
     border-radius: 4px;
+}
+.commande-validator {
+    opacity: 0.7;
+    background-color: #6C63FF;
+    cursor: pointer;
+    color: white;
+    margin: 0 0 10px 0;
+    border-radius: 4px;
+    border: none;
+    padding: 10px 20px;
+}
+.commande-validator:hover {
+    background-color: #6C63FF;
+    opacity: 1;
+}
+.panier-item:hover {
+    background-color: #6C63FF;
+    opacity: 1;
 }
 
 .panier {
