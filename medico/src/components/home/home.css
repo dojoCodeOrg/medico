@@ -26,13 +26,13 @@
 .hero-image {
     width: 16%;
 }
-.home-client-pharmacie-gard {
+.home-client-pharmacie-gard, .home-client-pharmacie-prox {
     display: flex;
     justify-content: space-between;
     gap: 5rem;
     margin: 60px 0;
 }
-.gard-image {
+.gard-image, .prox-image {
     width: 60%;
 }
 .gard-content {
@@ -40,11 +40,11 @@
     justify-content: right;
     text-align: right;
 }
-.gard-p {
+.gard-p, .prox-p {
     font-size: 1rem;
     line-height: 25px;
 }
-.gard-button {
+.gard-button, .prox-button {
     margin: 20px 0;
     padding: 10px 25px;
     border: none;
