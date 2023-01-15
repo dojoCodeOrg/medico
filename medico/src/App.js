@@ -9,6 +9,7 @@ import Medicament from "./components/medicament/Medicament";
 import CreateMedicament from "./components/medicament/CreateMedicaments"
 import Privacy from "./components/privacyPolicy/privacyPolicy";
 import NotFound from "./components/notFound/NotFound";
+import Proximite from "./components/proximite/Proximite";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/privacy" element={<Privacy />} />
           <Route exact path="/new/medicament" element={<CreateMedicament />} />
           <Route exact path="/user" element={<Dashboard />} />
+          <Route exact path="/proximite" element={<Proximite />} />
           <Route exact path="/pharmacie" element={<Pharnacie />} />
         </Routes>
       </Router>
