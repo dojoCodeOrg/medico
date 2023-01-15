@@ -3,6 +3,13 @@ import { auth,db,stopNetworkAcces } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where, doc } from "firebase/firestore";
+import Header from "../header/Header";
+
+import "./home.css";
+import map from "../../assets/images/map.svg";
+import para from "../../assets/images/para.svg";
+import medocs from "../../assets/images/medocs.svg";
+
 
 
 function Home() {
@@ -35,14 +42,7 @@ function Home() {
             setType(datas.type);
         }
     }; 
-
-
-    function switchToDashboardAsUser() {
-        window.location.href = `/user?${name}`
-    }
-    function switchToDashboardAsPharmacie() {
-        window.location.href = `/pharmacie?${name}`
-    }
+ 
 
     useEffect(() => {
         if (loading) return;        
@@ -54,9 +54,57 @@ function Home() {
     if (type === 'user') {
         return (
             <>
-    
-            <div>Bienvenue sur Medico Client {name}</div>
-            <button onClick={switchToDashboardAsUser}>profil</button>
+            <Header />
+
+            <div className="home-client">
+                <p className="client-hp">Bienvenue sur Medico client {name}</p>
+                <div className="home-client-hero-section">
+                    <div className="hero-content">
+                        <h1 className="hero-h1">Medico</h1>
+                        <p className="hero-p">In publishing and graphic design, Lorem ipsum is a placeholder
+                     text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p>
+                    </div>
+                    <img className="hero-image" src={medocs} />
+                </div>
+                <div className="top-medoc">
+                    <div className="top-medoc-header">
+                        <p className="pop-p">Medicament populaire</p>
+                        <button className="pop-all">voir tout</button>
+                    </div>
+                    <div className="top-medoc-content">
+                        <div className="top-medoc-item">
+                            <img className="item-image" src={para} />
+                            <p>Paracetamols</p>
+                            <a>voir</a>
+                        </div>
+                        <div className="top-medoc-item">
+                            <img className="item-image" src={para} />
+                            <p>Paracetamols</p>
+                            <a>voir</a>
+                        </div>
+                        <div className="top-medoc-item">
+                            <img className="item-image" src={para} />
+                            <p>Paracetamols</p>
+                            <a>voir</a>
+                        </div>
+                        <div className="top-medoc-item">
+                            <img className="item-image" src={para} />
+                            <p>Paracetamols</p>
+                            <a>voir</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="home-client-pharmacie-gard">
+                    <img className="gard-image" src={map} />
+                    <div className="gard-content">
+                        <h1 className="gard-h1">Pharmacie de Garde</h1>
+                        <p className="gard-p">In publishing and graphic design, Lorem ipsum is a placeholder
+                     text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p>
+                     <button className="gard-button">voir les pharmacies de gardes</button>
+                    </div>
+                </div>              
+
+            </div>
     
             </>
         )        
@@ -65,7 +113,6 @@ function Home() {
             <>
     
             <div>Bienvenue sur Medico Pharnacie {name}</div>
-            <button onClick={switchToDashboardAsPharmacie}>profil</button>            
     
             </>
         )   
