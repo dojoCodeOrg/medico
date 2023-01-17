@@ -156,7 +156,7 @@ function CreateMedicament() {
 
                         <label className="create-label">
                             Photo:
-                            <input type="file" accept="/image/*" onChange={handleUpload}/>
+                            <input required type="file" accept="/image/*" onChange={handleUpload}/>
                             <p className="create-percent">{percent} "%"</p>
                         </label>
 

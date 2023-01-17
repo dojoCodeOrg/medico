@@ -20,7 +20,7 @@ function Home() {
     const [photo, setPhoto] = useState();
     const [name, setName] = useState("");
     const [userid, setUid] = useState("");
-    const [type, setType] = useState("user");
+    const [type, setType] = useState("");
 
 
     // fetch username by uid
@@ -37,6 +37,9 @@ function Home() {
             
         } catch (err) {
             try {
+                setUid(user.uid)
+                setName(user.displayName);
+                setPhoto(user.photoURL);
                 const qs = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
                 const docs = await getDocs(qs);
                 const datas = docs.docs[0].data();
@@ -55,6 +58,9 @@ function Home() {
     }
     function switchToMedicaments() {
         window.location.href = `/medicaments`;        
+    }
+    function switchToPharmacieProfile() {
+        window.location.href = `/pharmacie?${name}#${user?.uid}`;        
     }
 
     useEffect(() => {
@@ -138,9 +144,12 @@ function Home() {
     } else if (type === 'pharmacie') {
         return (
             <>
-    
-            <div>Bienvenue sur Medico Pharnacie {name}</div>
-    
+            <Header />
+                <div className="home-client">
+                    <p className="client-hp">Bienvenue sur Medico Pharnacie {name}</p>
+                    <button onClick={switchToPharmacieProfile} className="gard-button">Aller vers le Profil</button>
+                </div>
+            <Footer />
             </>
         )   
     }

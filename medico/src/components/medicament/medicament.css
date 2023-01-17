@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.med {
+    display: flex;
+    gap: 4rem;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 60px 140px;
+    font-family: 'Poppins';
+}
+.med-content {
+    display: grid;
+    padding: 20px 20px;    
+}
+.med-content p {
+    margin: 10px 0;
+}
+.med-content button {
+    margin: 20px 0;
+    padding: 10px 25px;
+    border: none;
+    background-color: #6C63FF;
+    border-radius: 5px;
+    color: white;
+}
