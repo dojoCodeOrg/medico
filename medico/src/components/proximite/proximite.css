@@ -1,4 +1,3 @@
-.umap-ui #umap-ui-container {
-    right: 0;
-    display: none !important;
+iframe {
+    height: 100vh;
 }

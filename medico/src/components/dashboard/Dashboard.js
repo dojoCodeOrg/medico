@@ -130,8 +130,8 @@ function Dashboard() {
                                 Infos :<p id="description" contentEditable="true">{description}</p>
                             </div>
                         </div>    
-                        <button className="dash-btn" onClick={updateUserProfile}>enregistrer les modifs</button>
-                        <button className="dash-btn" onClick={logout}>se deconnecter</button>
+                        <button className="dash-btn" onClick={updateUserProfile}>Enregistrer les modifications</button>
+                        <button className="dash-btn" onClick={logout}>Se deconnecter</button>
                     </div>   
                     <div className="panier">
                         <h2>Panier</h2>

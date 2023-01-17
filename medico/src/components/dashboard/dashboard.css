@@ -75,7 +75,7 @@
 .panier {
     display: block;
     justify-content: left;
-    background-color: rgba(199, 196, 196, 0.479);
+    /* background-color: rgba(199, 196, 196, 0.479); */
     border-radius: 5px;
     padding: 20px 30px;
     height: 100%;
