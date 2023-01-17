@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.create-container {
+    /* width: 1118px; */
+    /* height: 1000px; */
+    background-color: #FFFFFF;
+    /* border-radius: 16px; */
+    /* margin: 3rem auto; */
+    padding-bottom: 40px;
+}
+
+.create-container .create-main {
+    display: grid;
+    justify-content: center;
+    padding: 50px 0;
+}
+.create-label {
+    margin: 40px 0 0 0;
+}
+.create-p {
+    margin: 10px 0 0 0;
+}
+.create-titre {
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0;
+}
+.create-container .create-main .block1 {
+    /* margin-top: 60px; */
+}
+
+.create-container .create-main .block1 p:nth-child(1) {
+    /* font-size: 20px; */
+}
+
+.create-container .create-main .block1 p:nth-child(2) {
+    /* font-size: 12px; */
+}
+
+.create-container .create-main .block1 input {
+    margin-top: 15px;
+    width: 740px;
+    height: 79px;
+}
+
+.create-container .create-main .block2 {
+    margin-top: 30px;
+}
+
+.create-container .create-main .block2 p:nth-child(1) {
+    /* font-size: 20px; */
+}
+
+.create-container .create-main .block2 p:nth-child(2) {
+    /* font-size: 12px; */
+}
+
+.create-textarea {
+    /* min-width: 600px; */
+    width: 100%;
+    height: 25vh;
+}
+
+.create-container .create-main .block2 input {
+    margin-top: 15px;
+    width: 740px;
+    height: 195px;
+}
+
+.create-container .create-main .block3 {
+    margin-top: 20px;
+}
+
+.create-container .create-main .block3 p:nth-child(1) {
+    /* font-size: 20px; */
+}
+
+.create-container .create-main .block3 p:nth-child(2) {
+    /* font-size: 12px; */
+}
+
+.create-container .create-main .block3 input {
+    margin-top: 15px;
+    width: 740px;
+    height: 29px;
+}
+
+.create-container .create-main .button {
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 279px;
+    padding: 5px 0;
+    /* height: 51px; */
+    background-color: #516FD5;
+    text-align: center;
+    line-height: 2.5;
+}
+.create-container .create-main .button:hover {
+    cursor: pointer;
+}
+
+.create-container .create-main .button a {
+    text-decoration: none;
+    /* font-size: 20px; */
+    color: #FFFFFF;   
+}
+
+@media screen and (max-width: 750px) {
+    .create-container {
+        padding-bottom: 70px;
+        /* width: 435px; */
+        /* height: 846px; */
+    }
+    .block3 {
+        margin-bottom: 30px;
+    }
+    .create-percent {
+        margin: 10px 50px;
+    }
+    .create-label {
+        margin: 10px 50px;
+    }
+
+    .create-container .create-main {
+        display: block;
+        padding: 30px 0 0 0;
+    }
+
+    .create-container .create-main h1 {
+        margin-left: 35px;
+        font-size: 24px;
+    }
+
+    .create-container .create-main .block1, .block2, .block3, .button {
+        margin-left: 35px;
+    }
+
+    .create-container .create-main .block1 {
+        margin-top: 20px;
+    }
+
+    .create-container .create-main .block2 {
+        margin-top: 15px;
+    }
+
+    .create-container .create-main .block1 input {
+        max-width: 300px;
+        /* width: 350px; */
+        /* height: 79px; */
+    }
+    .create-textarea {
+        max-width: 300px;
+    }
+    
+    .create-container .create-main .block2 input {
+        width: 360px;
+        height: 195px;
+    }
+    
+    .create-container .create-main .block3 {
+        margin-top: 20px;
+    }
+    
+    .create-container .create-main .block3 input {
+        /* width: 362px; */
+        /* height: 29px; */
+        max-width: 300px;
+    }
+    
+    .create-container .create-main .button {
+        margin-top: 50px;
+        width: 279px;
+        /* height: 51px; */
+    }
+
+    .create-container .create-main .block1, .block2, .block3 p:nth-child(2) {
+        width: 335px;
+    }
+}

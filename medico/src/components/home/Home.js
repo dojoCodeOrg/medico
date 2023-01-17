@@ -53,6 +53,9 @@ function Home() {
     function switchToProximite() {
         window.location.href = `/proximite`;
     }
+    function switchToMedicaments() {
+        window.location.href = `/medicaments`;        
+    }
 
     useEffect(() => {
         if (loading) return;        
@@ -100,7 +103,7 @@ function Home() {
                 <div className="top-medoc">
                     <div className="top-medoc-header">
                         <p className="pop-p">Medicament populaire</p>
-                        <button className="pop-all">voir tout</button>
+                        <button onClick={switchToMedicaments} className="pop-all">voir tout</button>
                     </div>
                     <div className="top-medoc-content">
                         <div className="top-medoc-item">

@@ -9,6 +9,12 @@ import { isEmpty } from "@firebase/util";
 import storage from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
+import "./createMedicament.css";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+
+
+
 function CreateMedicament() {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
@@ -123,15 +129,46 @@ function CreateMedicament() {
 
     return (
         <>
-        nom: <input id="name" type="text"></input>
-        description: <input id="description" type="text"></input>
-        price: <input id="price" type="text"></input>
+
+        <Header />       
+
+                <div class="create-container">
+                    <main class="create-main">
+                        <h1>Ajouter un nouveau medicament</h1><br></br><br></br>
+
+                        <div class="block1">
+                            <p className="create-titre">Nom</p>
+                            <p className="create-p">Soyez précis sur le nom du medicament.</p>
+                            <input type="text" id="name" />
+                        </div>
+
+                        <div class="block2">
+                            <p className="create-titre">Description</p>
+                            <p className="create-p">Présentez le medicament. Minimum 20 caractères.</p>
+                            <textarea className="create-textarea" id="description"></textarea>
+                        </div>
+
+                        <div class="block3">
+                            <p className="create-titre">Prix</p>
+                            <p className="create-p">Ajouter le prix du medicament.</p>
+                            <input type="text" id="price" />
+                        </div>
+
                         <label className="create-label">
                             Photo:
                             <input type="file" accept="/image/*" onChange={handleUpload}/>
                             <p className="create-percent">{percent} "%"</p>
                         </label>
-        <button onClick={createNewMedicament}>ajouter un medicament</button>
+
+                        <div class="button">
+                            <a onClick={createNewMedicament}>Ajouter un medicament</a>
+                        </div>
+                    </main>
+                </div> 
+        
+
+            <Footer />
+
         </>
     )
 }

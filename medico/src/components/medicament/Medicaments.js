@@ -35,7 +35,56 @@ function Medicaments() {
     }
 
     const fetchMedicaments = async () => {
+        let medicament = [];
+        try {
+            const q = query(collection(db, "pharmacies"));
+            const doc = await getDocs(q);
+            const data = doc.docs;
+            data.forEach((item) => {
+                if (!item.data().medicaments) {
+                    item.data().medicaments = {};
+                }
+                const tempMedicament = item.data().medicaments;
+                medicament.push(tempMedicament);
+            });
+            medicament = medicament[0];
+            console.log(medicament);
 
+            let medoc_area = document.querySelector('#medoc_area');
+            medoc_area.innerHTML = "";
+
+            let ids = 0;
+            medicament.forEach((item) => {                    
+                    let medoc_item = document.createElement('div');
+                    medoc_item.classList.add('medoc-item');
+
+                    let medoc_name = document.createElement('div');
+                    medoc_name.classList.add('medoc-name');
+                    medoc_name.innerHTML = item[ids].name;
+
+                    let medco_desc = document.createElement('div');
+                    medco_desc.classList.add('medoc-description');
+                    medco_desc.innerHTML = item[ids].description;
+
+                    let medco_photo = document.createElement('a');
+                    medco_photo.classList.add('medoc');
+                    medco_photo.src = item[ids].photo;
+
+                    let medco_price = document.createElement('div');
+                    medco_price.classList.add('medoc-price');
+                    medco_price.innerHTML = item[ids].price;
+
+                    medoc_item.appendChild(medoc_name);
+                    medoc_item.appendChild(medco_desc);
+                    medoc_item.appendChild(medco_price);
+                    medoc_item.appendChild(medco_photo);
+
+                    medoc_area.appendChild(medoc_item);
+                    ids = ids+1;
+            });
+        } catch (error) {
+            console.log(error);
+        }  
     }
 
     useEffect(() => {        
@@ -49,6 +98,7 @@ function Medicaments() {
     return (
         <>
         <h1>Medicaments (tout)</h1>
+        <div id="medoc_area"></div>
         </>
     )
 }
