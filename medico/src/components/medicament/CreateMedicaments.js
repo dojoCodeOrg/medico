@@ -53,10 +53,11 @@ function CreateMedicament() {
                     let key = 0;
                     const date = new Date();
                     if (isEmpty(medicament)) {
+                        console.log("isEMpty");
                         setMedicament({});
                         key = 0;
                     } else {
-                        let key = medicament[medicament.length -1].length + 1;
+                        key = parseInt(Object.keys(medicament[medicament.length-1])[0])+1;
                     }
                     console.log(`On a deja ${key} questions`);
                     let new_medoc = {};
@@ -64,7 +65,7 @@ function CreateMedicament() {
                     medicament.push(new_medoc);
                     const userDocByUsername = doc(db, "pharmacies", pharmaciename);
                     await updateDoc(userDocByUsername, {
-                        medicament: medicament
+                        medicaments: medicament
                     });
                     window.location = `/medicament?${key}!${user?.uid}`;
                 }            

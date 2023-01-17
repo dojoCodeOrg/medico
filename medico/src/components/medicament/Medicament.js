@@ -41,10 +41,10 @@ function Medicament() {
             const doc = await getDocs(q);
             const data = doc.docs;
             data.forEach((item) => {
-                if (!item.data().medicament) {
-                    item.data().medicament = {};
+                if (!item.data().medicaments) {
+                    item.data().medicaments = {};
                 }
-                const tempMedicament = item.data().medicament;
+                const tempMedicament = item.data().medicaments;
                 medicament.push(tempMedicament);
             });
             medicament = medicament[0];
@@ -54,25 +54,25 @@ function Medicament() {
             medoc_area.innerHTML = "";
 
             medicament.forEach((item) => {
-                if (Object.keys(item)[0] === medicamentID) {    
+                if (Object.keys(item)[0] === medicamentID) {   
                     let medoc_item = document.createElement('div');
                     medoc_item.classList.add('medoc-item');
 
                     let medoc_name = document.createElement('div');
                     medoc_name.classList.add('medoc-name');
-                    medoc_name.innerHTML = item[0].name;
+                    medoc_name.innerHTML = item[medicamentID].name;
 
                     let medco_desc = document.createElement('div');
                     medco_desc.classList.add('medoc-description');
-                    medco_desc.innerHTML = item[0].description;
+                    medco_desc.innerHTML = item[medicamentID].description;
 
                     let medco_photo = document.createElement('a');
                     medco_photo.classList.add('medoc');
-                    medco_photo.src = item[0].photo;
+                    medco_photo.src = item[medicamentID].photo;
 
                     let medco_price = document.createElement('div');
                     medco_price.classList.add('medoc-price');
-                    medco_price.innerHTML = item[0].price;
+                    medco_price.innerHTML = item[medicamentID].price;
 
                     medoc_item.appendChild(medoc_name);
                     medoc_item.appendChild(medco_desc);
