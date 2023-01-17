@@ -74,10 +74,16 @@ function Medicaments() {
                     medco_price.classList.add('medoc-price');
                     medco_price.innerHTML = item[ids].price;
 
+                    let medoc_href = document.createElement('a');
+                    let linkText = document.createTextNode("Voir");
+                    medoc_href.appendChild(linkText);
+                    medoc_href.href = `/medicament?${Object.keys(item)[0]}#${item[ids].pharmacieWhoAsId}`;
+
                     medoc_item.appendChild(medoc_name);
                     medoc_item.appendChild(medco_desc);
                     medoc_item.appendChild(medco_price);
                     medoc_item.appendChild(medco_photo);
+                    medoc_item.appendChild(medoc_href);
 
                     medoc_area.appendChild(medoc_item);
                     ids = ids+1;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth,db,stopNetworkAcces } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { query, collection, getDocs } from "firebase/firestore";
+import { query, collection, getDocs, where } from "firebase/firestore";
 
 function Medicament() {
     const [isLoading, setIsLoading] = useState(false);
@@ -11,8 +11,10 @@ function Medicament() {
 
 
     let medicamentID = null;
+    let pharmacieid = null;
     try {
-        medicamentID = window.location.href.split('?')[1].split('!')[0];
+        pharmacieid = window.location.href.split('#')[1];
+        medicamentID = window.location.href.split('?')[1].split('#')[0];
     } catch (error) {
         console.log(error)
     }
@@ -37,7 +39,7 @@ function Medicament() {
     const fetchMedicament = async () => {
         let medicament = [];
         try {
-            const q = query(collection(db, "pharmacies"));
+            const q = query(collection(db, "pharmacies"), where("uid", "==", pharmacieid));
             const doc = await getDocs(q);
             const data = doc.docs;
             data.forEach((item) => {
@@ -97,7 +99,7 @@ function Medicament() {
 
     return (
         <>
-        <h1>Medicament</h1>
+        <h1>Medicament (item)</h1>
         <div id="medoc_area"></div>
         </>
     )

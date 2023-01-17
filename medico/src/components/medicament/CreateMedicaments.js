@@ -67,7 +67,7 @@ function CreateMedicament() {
                     }
                     console.log(`On a deja ${key} questions`);
                     let new_medoc = {};
-                    new_medoc[key] = {name:name,description:description, price:price.split(','), date, fileUrl};
+                    new_medoc[key] = {name:name,description:description, price:price.split(','), date, fileUrl, pharmacieWhoAsId:user?.uid};
                     medicament.push(new_medoc);
                     const userDocByUsername = doc(db, "pharmacies", pharmaciename);
                     await updateDoc(userDocByUsername, {
