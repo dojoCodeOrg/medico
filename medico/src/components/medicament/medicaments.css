@@ -1,0 +1,13 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.top-medoc-content {
+    flex-wrap: wrap;
+}
+
+.top-medoc-item {
+    width: 10%;
+    max-width: 100px;
+}

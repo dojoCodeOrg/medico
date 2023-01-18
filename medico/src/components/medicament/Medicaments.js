@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs } from "firebase/firestore";
 
+import "./medicaments.css";
+import para from "../../assets/images/para.svg";
+
 function Medicaments() {
     const [isLoading, setIsLoading] = useState(false);
     const [user, loading] = useAuthState(auth);
@@ -48,7 +51,65 @@ function Medicaments() {
 
     return (
         <>
-        <h1>Medicaments (tout)</h1>
+        <main>
+            <div className="top-medoc">
+                <div className="top-medoc-header">
+                    <p className="pop-p">Medicament populaire</p>
+                </div>
+                <div className="top-medoc-content">
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a>
+                    </div>
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a>
+                    </div>
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a>
+                    </div>
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a>
+                    </div>
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a>
+                    </div>
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a>
+                    </div>
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a>
+                    </div>
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a>
+                    </div>
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a>
+                    </div>
+                    <div className="top-medoc-item">
+                        <img className="item-image" src={para} />
+                        <p>Paracetamols</p>
+                        <a>voir</a> 
+                    </div>
+                </div>
+            </div>
+        </main>
         </>
     )
 }
