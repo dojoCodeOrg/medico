@@ -95,7 +95,7 @@ function Medicament() {
                     setMedicamentName(item[medicamentID].name);  
                     setMedicamentDescription(item[medicamentID].description);
                     setMedicamentPrice(item[medicamentID].price);
-                    setMmedicamentPhoto(item[medicamentID].photo);
+                    setMmedicamentPhoto(item[medicamentID].fileUrl);
                 };
             });
         } catch (error) {
@@ -120,7 +120,7 @@ function Medicament() {
             <>
                 <Header />
                 <div className="medoc">
-                    <img src={medicamentPhoto} />
+                    <img src={medicamentPhoto} alt="photo" />
                     <div className="medoc-content">
                         <h1>{medicamentName}</h1>
                         <p>{medicamentDescription}</p>
@@ -137,7 +137,7 @@ function Medicament() {
             <>
                 <Header />
                 <div className="med">
-                    <img src={medicamentPhoto} />
+                    <img src={medicamentPhoto} alt="photo" />
                     <div className="medoc-content">
                         <h1>{medicamentName}</h1>
                         <p>{medicamentDescription}</p>

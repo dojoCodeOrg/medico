@@ -73,7 +73,7 @@ function CreateMedicament() {
                     await updateDoc(userDocByUsername, {
                         medicaments: medicament
                     });
-                    window.location = `/medicament?${key}!${user?.uid}`;
+                    window.location = `/medicament?${key}#${user?.uid}`;
                 }            
     
             } catch (error) {
@@ -90,7 +90,7 @@ function CreateMedicament() {
             return false;
         }
      
-        const storageRef = ref(storage,`/photo/question/${file.name}`)
+        const storageRef = ref(storage,`/photo/medicaments/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
      
         uploadTask.on(

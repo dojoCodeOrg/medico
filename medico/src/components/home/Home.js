@@ -23,6 +23,68 @@ function Home() {
     const [type, setType] = useState("");
 
 
+    const fetchMedicaments = async () => {
+        let medicament = [];
+        try {
+            const q = query(collection(db, "pharmacies"));
+            const doc = await getDocs(q);
+            const data = doc.docs;
+            data.forEach((item) => {
+                if (!item.data().medicaments) {
+                    item.data().medicaments = {};
+                }
+                const tempMedicament = item.data().medicaments;
+                medicament.push(tempMedicament);
+            });
+            medicament = medicament[0];
+            console.log(medicament);
+
+            let medoc_area = document.querySelector('#medoc_area');
+            medoc_area.innerHTML = "";
+
+            let ids = 0;            
+            medicament.forEach((item) => {                    
+                console.log(ids)
+                // if (ids < 1) {
+                        let medoc_item = document.createElement('div');
+                        medoc_item.classList.add('top-medoc-item');
+
+                        let medoc_name = document.createElement('div');
+                        medoc_name.classList.add('medoc-name');
+                        medoc_name.innerHTML = item[ids].name;
+
+                        let medco_desc = document.createElement('div');
+                        medco_desc.classList.add('medoc-description');
+                        medco_desc.innerHTML = item[ids].description;
+
+                        let medco_photo = document.createElement('img');
+                        medco_photo.classList.add('item-image');
+                        medco_photo.src = item[ids].photo;
+
+                        let medco_price = document.createElement('div');
+                        medco_price.classList.add('medoc-price');
+                        medco_price.innerHTML = `${item[ids].price} fcfa`;
+
+                        let medoc_href = document.createElement('a');
+                        let linkText = document.createTextNode("Voir");
+                        medoc_href.appendChild(linkText);
+                        medoc_href.href = `/medicament?${Object.keys(item)[0]}#${item[ids].pharmacieWhoAsId}`;
+
+                        medoc_item.appendChild(medco_photo);
+                        medoc_item.appendChild(medoc_name);
+                        // medoc_item.appendChild(medco_desc);
+                        medoc_item.appendChild(medco_price);
+                        medoc_item.appendChild(medoc_href);
+
+                        medoc_area.appendChild(medoc_item);
+                // }
+                ids = ids+1;
+            });
+        } catch (error) {
+            console.log(error);
+        }  
+    }
+
     // fetch username by uid
     const fetchUserInfo = async () => {
         try {
@@ -69,6 +131,7 @@ function Home() {
 
         setTimeout(() => { 
             fetchUserInfo();
+            fetchMedicaments();
         }, 1000);
     }, [user, loading]);
 
@@ -112,26 +175,7 @@ function Home() {
                         <button onClick={switchToMedicaments} className="pop-all">voir tout</button>
                     </div>
                     <div className="top-medoc-content">
-                        <div className="top-medoc-item">
-                            <img className="item-image" src={para} />
-                            <p>Paracetamols</p>
-                            <a>voir</a>
-                        </div>
-                        <div className="top-medoc-item">
-                            <img className="item-image" src={para} />
-                            <p>Paracetamols</p>
-                            <a>voir</a>
-                        </div>
-                        <div className="top-medoc-item">
-                            <img className="item-image" src={para} />
-                            <p>Paracetamols</p>
-                            <a>voir</a>
-                        </div>
-                        <div className="top-medoc-item">
-                            <img className="item-image" src={para} />
-                            <p>Paracetamols</p>
-                            <a>voir</a>
-                        </div>
+                        <div id="medoc_area"></div>                       
                     </div>
                 </div>
                            
