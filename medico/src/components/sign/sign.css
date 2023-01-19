@@ -4,67 +4,77 @@
     box-sizing: border-box;
 }
 
-.container {
+.container-sign {
     display: flex;
     justify-content: center;
     min-height: 100vh;
 }
 
-.container main {
+.container-sign main {
     display: flex;
     text-align: center;
     justify-content: center;
     gap: 5rem;
 }
 
-.container main .client .image img {
-    width: 60%;
+.container-sign main .client .image-sign img {
+    width: 40%;
     margin-top: 5rem;
 }
 
-.container main .pharmacie .image img {
-    width: 38%;
+.container-sign main .pharmacie .image-sign img {
+    width: 25%;
     margin-top: 5rem;
 }
 
-.container main .client h1, .pharmacie h1 {
+.container-sign main .client .h1-sign, .pharmacie .h1-sign {
     margin-top: 2rem;
 }
 
-.container main .client p, .pharmacie p {
+.container-sign main .client .p-sign, .pharmacie .p-sign {
     display: flex;
     text-align: center;
     margin-top: 2rem;
     padding: 0 10% 0 10%;
 }
 
-.container main .client, .pharmacie {
+.container-sign main .client, .pharmacie {
 }
 
-.container main .pharmacie {
+.container-sign main .pharmacie {
     background-color: rgb(83, 231, 83);
 }
-
-.container main button {
-    padding: 8px;
+.button-client-sign {
     border-radius: 5px;
-}
-
-.container main button{
     margin-top: 2rem;
-    padding: 15px;
+    padding: 15px 35px;
+    border: none;
     border-radius: 5px;
-    background-color: #e67e22;
+    background-color: #6C63FF;
     color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+}
+.button-pharmacie {
+    border-radius: 5px;
+    margin-top: 2rem;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: black;
+    font-weight: bold;
     cursor: pointer;
 }
 
 @media screen and (max-width:950px){
-    .container main {
+    .container-sign main {
         display: grid;
     }
-
-    .container main .client p, .pharmacie p {
+    .pharmacie {
+        padding-bottom: 10%;
+    }
+    .container-sign main .client .p-sign, .pharmacie .p-sign {
         padding: 0 5% 0 5%;
     }
 }

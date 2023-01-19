@@ -4,9 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { auth,logout,db } from "../../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { doc, updateDoc} from "firebase/firestore";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import LoadingSpinner from "../loadSpinner/LoadingSpinner";
+import "./dashboard.css";
 
 function Dashboard() {
     const [user, loading] = useAuthState(auth);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [photo, setPhoto] = useState('');
     const [name, setName] = useState("");
@@ -29,6 +34,7 @@ function Dashboard() {
     }
 
     const fetchUserInfo = async () => {
+        setIsLoading(true);
         try {            
             const q = query(collection(db, "users"), where("uid", "==", user?.uid));
             const doc = await getDocs(q);
@@ -49,6 +55,7 @@ function Dashboard() {
         } catch (err) {
             console.error(err);
         }
+        setIsLoading(false);
     }; 
 
 
@@ -94,18 +101,77 @@ function Dashboard() {
         
     return (
         <>  
-            <img referrerpolicy="no-referrer" src={photo} alt='Photo' />
-            <p>{username}</p>
-            <p>inscrit le : {creationTime}</p>
-            <p>derniere connexion : {lastSeen}</p>
-            <h2>Mes info</h2>
-            poids :<p id="poids" contentEditable="true">{poids}</p>
-            taille :<p id="taille" contentEditable="true">{taille}</p>
-            age :<p id="age" contentEditable="true">{age}</p>
-            sexe :<p id="sexe" contentEditable="true">{sexe}</p>
-            description :<p id="description" contentEditable="true">{description}</p>
-            <button onClick={updateUserProfile}>enregistrer les modifs</button>
-            <button onClick={logout}>se deconnecter</button>
+         <Header />              
+            {isLoading ? <LoadingSpinner /> : fetchUserInfo}
+            <div id="user-dash">
+                    <div class="user-dash-content">
+                        <div class="user-detail">
+                            <div class="image-dash">
+                                <img referrerpolicy="no-referrer" src={photo} alt="Photo"/>
+                            </div>
+                            <div class="infos-dash">
+                                <h3>{username}</h3>
+                                <p>inscrit le : {creationTime}</p>
+                                {/* <p>Derniere connexion : {lastSeen}</p> */}
+                            </div>
+                        </div>   
+                        <div class="user-detail-editable">
+                            {/* <h2>Mes info</h2> */}
+                            <div className="detail-item">
+                                Poids :<p id="poids" contentEditable="true">{poids}</p> kg
+                            </div>
+                            <div className="detail-item">
+                                Taille :<p id="taille" contentEditable="true">{taille}</p> cm
+                            </div>
+                            <div className="detail-item">
+                                Age :<p id="age" contentEditable="true">{age}</p> ans
+                            </div>
+                            <div className="detail-item">
+                                Sexe :<p id="sexe" contentEditable="true">{sexe}</p>
+                            </div>
+                            <div className="detail-item">
+                                Infos :<p id="description" contentEditable="true">{description}</p>
+                            </div>
+                        </div>    
+                        <div className="btns">
+                            <button className="dash-btn" onClick={updateUserProfile}>Enregistrer les modifications</button>
+                            <button className="dash-btn" onClick={logout}>Se deconnecter</button>
+                        </div>
+                    </div>   
+                    <div className="panier">
+                        <h2>Panier</h2>
+                        <div className="panier-item">
+                            <div className="panier-item-content">
+                                <p>Paracetamol x<span>1</span> <span>200fr</span></p>
+                                <p>Chez: xxxx</p>
+                            </div>
+                            <div className="remove-add-item-btn">
+                                -
+                            </div>
+                        </div>
+                        <div className="panier-item">
+                            <div className="panier-item-content">
+                                <p>Paracetamol x<span>1</span> <span>200fr</span></p>
+                                <p>Chez: xxxx</p>
+                            </div>
+                            <div className="remove-add-item-btn">
+                                -
+                            </div>
+                        </div>
+                        <div className="panier-item">
+                            <div className="panier-item-content">
+                                <p>Paracetamol x<span>1</span> <span>200fr</span></p>
+                                <p>Chez: xxxx</p>
+                            </div>
+                            <div className="remove-add-item-btn">
+                                -
+                            </div>
+                        </div>
+                        <button className="commande-validator">Passer commande</button>
+                    </div>                             
+            </div> 
+
+            <Footer />
         </>
     )
 }
