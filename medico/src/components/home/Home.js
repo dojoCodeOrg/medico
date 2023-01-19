@@ -11,7 +11,7 @@ import map from "../../assets/images/map.svg";
 import para from "../../assets/images/para.svg";
 import medocs from "../../assets/images/medocs.svg";
 
-
+import LoadingSpinner from "../loadSpinner/LoadingSpinner";
 
 function Home() {
     const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +24,7 @@ function Home() {
 
 
     const fetchMedicaments = async () => {
+        setIsLoading(true);
         let medicament = [];
         try {
             const q = query(collection(db, "pharmacies"));
@@ -40,12 +41,11 @@ function Home() {
             console.log(medicament);
 
             let medoc_area = document.querySelector('#medoc_area');
+            console.log(medoc_area)
             medoc_area.innerHTML = "";
 
-            let ids = 0;            
             medicament.forEach((item) => {                    
-                console.log(ids)
-                // if (ids < 1) {
+                const ids = Object.keys(item);
                         let medoc_item = document.createElement('div');
                         medoc_item.classList.add('top-medoc-item');
 
@@ -59,7 +59,7 @@ function Home() {
 
                         let medco_photo = document.createElement('img');
                         medco_photo.classList.add('item-image');
-                        medco_photo.src = item[ids].photo;
+                        medco_photo.src = item[ids].fileUrl;
 
                         let medco_price = document.createElement('div');
                         medco_price.classList.add('medoc-price');
@@ -83,6 +83,7 @@ function Home() {
         } catch (error) {
             console.log(error);
         }  
+        setIsLoading(false);
     }
 
     // fetch username by uid
@@ -129,16 +130,17 @@ function Home() {
         if (loading) return;        
         if (!user) navigate("/sign");
 
+        fetchUserInfo();
         setTimeout(() => { 
-            fetchUserInfo();
             fetchMedicaments();
-        }, 1000);
+        }, 2000);
     }, [user, loading]);
 
 
     if (type === 'user') {
         return (
             <>
+            {isLoading ? <LoadingSpinner /> : fetchMedicaments}
             <Header />
 
             <div className="home-client">

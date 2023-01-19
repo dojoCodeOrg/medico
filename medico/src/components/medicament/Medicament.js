@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
+import LoadingSpinner from "../loadSpinner/LoadingSpinner";
 import "./medicament.css"
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
@@ -76,6 +77,7 @@ function Medicament() {
     }; 
 
     const fetchMedicament = async () => {
+        setIsLoading(true);
         let medicament = [];
         try {
             const q = query(collection(db, "pharmacies"), where("uid", "==", pharmacieid));
@@ -101,6 +103,7 @@ function Medicament() {
         } catch (error) {
             console.log(error);
         }  
+        setIsLoading(false);
     }
 
     useEffect(() => {        
@@ -118,6 +121,7 @@ function Medicament() {
     if (type === 'user') {
         return (
             <>
+                {isLoading ? <LoadingSpinner /> : fetchMedicament}
                 <Header />
                 <div className="medoc">
                     <img src={medicamentPhoto} alt="photo" />
@@ -135,7 +139,8 @@ function Medicament() {
     } else {
         return (
             <>
-                <Header />
+                {isLoading ? <LoadingSpinner /> : fetchMedicament}
+                <Header />                
                 <div className="med">
                     <img src={medicamentPhoto} alt="photo" />
                     <div className="medoc-content">

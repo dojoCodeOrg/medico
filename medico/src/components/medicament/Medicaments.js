@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs } from "firebase/firestore";
 
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import LoadingSpinner from "../loadSpinner/LoadingSpinner";
+
 function Medicaments() {
     const [isLoading, setIsLoading] = useState(false);
     const [user, loading] = useAuthState(auth);
@@ -35,6 +39,7 @@ function Medicaments() {
     }
 
     const fetchMedicaments = async () => {
+        setIsLoading(true);
         let medicament = [];
         try {
             const q = query(collection(db, "pharmacies"));
@@ -50,11 +55,11 @@ function Medicaments() {
             medicament = medicament[0];
             console.log(medicament);
 
-            let medoc_area = document.querySelector('#medoc_area');
+            let medoc_area = document.querySelector('#medoc_area_all');
             medoc_area.innerHTML = "";
 
-            let ids = 0;
             medicament.forEach((item) => {                    
+                const ids = Object.keys(item);
                     let medoc_item = document.createElement('div');
                     medoc_item.classList.add('medoc-item');
 
@@ -66,23 +71,24 @@ function Medicaments() {
                     medco_desc.classList.add('medoc-description');
                     medco_desc.innerHTML = item[ids].description;
 
-                    let medco_photo = document.createElement('a');
-                    medco_photo.classList.add('medoc');
-                    medco_photo.src = item[ids].photo;
+                    let medco_photo = document.createElement('img');
+                    medco_photo.classList.add('medoc-photo');
+                    medco_photo.src = item[ids].fileUrl;
 
                     let medco_price = document.createElement('div');
                     medco_price.classList.add('medoc-price');
                     medco_price.innerHTML = item[ids].price;
 
                     let medoc_href = document.createElement('a');
+                    medoc_href.classList.add('see-btn');
                     let linkText = document.createTextNode("Voir");
                     medoc_href.appendChild(linkText);
                     medoc_href.href = `/medicament?${Object.keys(item)[0]}#${item[ids].pharmacieWhoAsId}`;
 
+                    medoc_item.appendChild(medco_photo);
                     medoc_item.appendChild(medoc_name);
                     medoc_item.appendChild(medco_desc);
                     medoc_item.appendChild(medco_price);
-                    medoc_item.appendChild(medco_photo);
                     medoc_item.appendChild(medoc_href);
 
                     medoc_area.appendChild(medoc_item);
@@ -91,6 +97,7 @@ function Medicaments() {
         } catch (error) {
             console.log(error);
         }  
+        setIsLoading(false);
     }
 
     useEffect(() => {        
@@ -103,8 +110,15 @@ function Medicaments() {
 
     return (
         <>
-        <h1>Medicaments (tout)</h1>
-        <div id="medoc_area"></div>
+            {isLoading ? <LoadingSpinner /> : fetchMedicaments}
+            <Header />   
+
+            <div className="all-content">
+                <h1 className="all-h1">Tout les medicaments sont ici</h1>
+                <div id="medoc_area_all"></div>
+            </div>
+
+            <Footer />
         </>
     )
 }

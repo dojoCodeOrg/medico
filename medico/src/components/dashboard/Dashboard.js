@@ -6,11 +6,12 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { doc, updateDoc} from "firebase/firestore";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-
+import LoadingSpinner from "../loadSpinner/LoadingSpinner";
 import "./dashboard.css";
 
 function Dashboard() {
     const [user, loading] = useAuthState(auth);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [photo, setPhoto] = useState('');
     const [name, setName] = useState("");
@@ -33,6 +34,7 @@ function Dashboard() {
     }
 
     const fetchUserInfo = async () => {
+        setIsLoading(true);
         try {            
             const q = query(collection(db, "users"), where("uid", "==", user?.uid));
             const doc = await getDocs(q);
@@ -53,6 +55,7 @@ function Dashboard() {
         } catch (err) {
             console.error(err);
         }
+        setIsLoading(false);
     }; 
 
 
@@ -99,7 +102,7 @@ function Dashboard() {
     return (
         <>  
          <Header />              
-            
+            {isLoading ? <LoadingSpinner /> : fetchUserInfo}
             <div id="user-dash">
                     <div class="user-dash-content">
                         <div class="user-detail">
@@ -130,8 +133,10 @@ function Dashboard() {
                                 Infos :<p id="description" contentEditable="true">{description}</p>
                             </div>
                         </div>    
-                        <button className="dash-btn" onClick={updateUserProfile}>Enregistrer les modifications</button>
-                        <button className="dash-btn" onClick={logout}>Se deconnecter</button>
+                        <div className="btns">
+                            <button className="dash-btn" onClick={updateUserProfile}>Enregistrer les modifications</button>
+                            <button className="dash-btn" onClick={logout}>Se deconnecter</button>
+                        </div>
                     </div>   
                     <div className="panier">
                         <h2>Panier</h2>

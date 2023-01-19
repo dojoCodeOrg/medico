@@ -173,6 +173,7 @@
         text-align: left;
         padding: 0 70px 0 0;        
     }
-    .gard-button {
+    .prox-image {
+        display: none;
     }
 }

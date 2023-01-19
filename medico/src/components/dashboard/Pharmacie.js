@@ -9,12 +9,13 @@ import { async } from "@firebase/util";
 import "./dashboard.css";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-
+import LoadingSpinner from "../loadSpinner/LoadingSpinner";
 
 function Pharnacie() {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
     const [photo, setPhoto] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const [name, setName] = useState("");
     const [lastSeen, setLastSeen]= useState('');
     const [creationTime, setCreationTime] = useState('');
@@ -36,6 +37,7 @@ function Pharnacie() {
     }
 
     const fetchPharmacieMedicament = async () => {
+        setIsLoading(true);
         let medicament = [];
         try {
             const q = query(collection(db, "pharmacies"), where("uid", "==", pharmacieid));
@@ -54,8 +56,8 @@ function Pharnacie() {
             const medoc_area = document.querySelector('#medicament-area');
             medoc_area.innerHTML = "";
 
-            let ids = 0;
             medicament.forEach((item) => {        
+                const ids = Object.keys(item);
                     let medoc_item = document.createElement('div');
                     medoc_item.classList.add('medoc-item');
 
@@ -68,12 +70,12 @@ function Pharnacie() {
                     medco_desc.innerHTML = `Description : ${item[ids].description}`;
 
                     let medco_photo = document.createElement('a');
-                    medco_photo.classList.add('medoc');
+                    medco_photo.classList.add('medoc-photot');
                     medco_photo.src = item[ids].photo;
 
                     let medco_price = document.createElement('div');
                     medco_price.classList.add('medoc-price');
-                    medco_price.innerHTML = `Prix : ${item[ids].price}`;
+                    medco_price.innerHTML = `Prix : ${item[ids].price} fcfa`;
 
                     let medoc_href = document.createElement('a');
                     let linkText = document.createTextNode("Voir");
@@ -91,7 +93,8 @@ function Pharnacie() {
             });
         } catch (error) {
             console.log(error);
-        }  
+        };
+        setIsLoading(false);
     };   
     
 
@@ -160,6 +163,7 @@ function Pharnacie() {
         <>                                           
 
             <Header />              
+            {isLoading ? <LoadingSpinner /> : fetchPharmacieMedicament}
             
             <div id="user-dash">
                     <div class="user-dash-content">
@@ -188,11 +192,13 @@ function Pharnacie() {
                                 description :<p id="description" contentEditable="true">{description}</p>
                             </div>
                         </div>    
-                        <button className="dash-btn" onClick={updatePharmacieProfile}>Enregistrer les modifications</button>
-                        <button className="dash-btn" onClick={logout}>Se deconnecter</button>
+                        <div className="btns">
+                            <button className="dash-btn" onClick={updatePharmacieProfile}>Enregistrer les modifications</button>
+                            <button className="dash-btn" onClick={logout}>Se deconnecter</button>
+                        </div>
                     </div>   
                     <div className="panier">
-                        <h1>Nos medicaments</h1>
+                        <h1>Medicaments</h1>
                         <div id="medicament-area"></div>
                         <button onClick={switchToCreateMedicament}>ajouter un medicament</button>
                     </div>                             

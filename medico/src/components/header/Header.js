@@ -47,7 +47,7 @@ function Header() {
         window.location.href = `/user?${name}`
     }
     function switchToDashboardAsPharmacie() {
-        window.location.href = `/pharmacie?${name}`
+        window.location.href = `/pharmacie#${userid}`
     }
     function switchToHome() {
         window.location.href = `/`;
