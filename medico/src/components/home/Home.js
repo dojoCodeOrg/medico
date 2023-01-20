@@ -45,7 +45,7 @@ function Home() {
             medoc_area.innerHTML = "";
 
             medicament.forEach((item) => {                    
-                const ids = Object.keys(item);
+                let ids = Object.keys(item);
                         let medoc_item = document.createElement('div');
                         medoc_item.classList.add('top-medoc-item');
 
@@ -153,16 +153,7 @@ function Home() {
                     </div>
                     <img className="hero-image" src={medocs} />
                 </div>
-                <div className="home-client-pharmacie-gard">
-                    <img className="gard-image" src={map} />
-                    <div className="gard-content">
-                        <h1 className="gard-h1">Pharmacie a Proximite</h1>
-                        <p className="gard-p">In publishing and graphic design, Lorem ipsum is a placeholder
-                     text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p>
-                     <button onClick={switchToProximite} className="gard-button">voir les pharmacies a proximites</button>
-                    </div>
-                </div>  
-                <div className="home-client-pharmacie-prox">
+                {/* <div className="home-client-pharmacie-prox">
                     <div className="prox-content">
                         <h1 className="prox-h1">Pharmacie de Garde</h1>
                         <p className="prox-p">In publishing and graphic design, Lorem ipsum is a placeholder
@@ -170,7 +161,7 @@ function Home() {
                      <button onClick={switchToProximite} className="prox-button">voir les pharmacies de gardes</button>
                     </div>
                     <img className="prox-image" src={map} />
-                </div>  
+                </div>   */}
                 <div className="top-medoc">
                     <div className="top-medoc-header">
                         <p className="pop-p">Medicament populaire</p>
@@ -180,6 +171,15 @@ function Home() {
                         <div id="medoc_area"></div>                       
                     </div>
                 </div>
+                <div className="home-client-pharmacie-gard">
+                    <img className="gard-image" src={map} />
+                    <div className="gard-content">
+                        <h1 className="gard-h1">Pharmacie a Proximite</h1>
+                        <p className="gard-p">In publishing and graphic design, Lorem ipsum is a placeholder
+                        text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p>
+                        <button onClick={switchToProximite} className="gard-button">voir les pharmacies a proximites</button>
+                    </div>
+                </div>  
                            
 
             </div>
@@ -192,8 +192,10 @@ function Home() {
             <>
             <Header />
                 <div className="home-client">
+                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                     <p className="client-hp">Bienvenue sur Medico Pharnacie {name}</p>
                     <button onClick={switchToPharmacieProfile} className="gard-button">Aller vers le Profil</button>
+                    <br></br><br></br><br></br><br></br><br></br><br></br>
                 </div>
             <Footer />
             </>

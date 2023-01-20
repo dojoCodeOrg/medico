@@ -32,6 +32,7 @@ function Pharnacie() {
     try {
         pharmacieid = window.location.href.split('#')[1];
         pharmaciename = window.location.href.split('?')[1].split('#')[0].split('%20').join(' ');
+        console.log(pharmaciename);
     } catch (err) {
         console.log(err);
     }
@@ -57,7 +58,7 @@ function Pharnacie() {
             medoc_area.innerHTML = "";
 
             medicament.forEach((item) => {        
-                const ids = Object.keys(item);
+                let ids = Object.keys(item);
                     let medoc_item = document.createElement('div');
                     medoc_item.classList.add('medoc-item');
 
@@ -78,9 +79,9 @@ function Pharnacie() {
                     medco_price.innerHTML = `Prix : ${item[ids].price} fcfa`;
 
                     let medoc_href = document.createElement('a');
-                    let linkText = document.createTextNode("Voir");
+                    let linkText = document.createTextNode("voir");
                     medoc_href.appendChild(linkText);
-                    medoc_href.href = `/medicament?${Object.keys(item)[0]}#${pharmacieid}`;
+                    medoc_href.href = `/medicament?${Object.keys(item)[0]}#${pharmacieid}!${pharmaciename}`;
 
                     medoc_item.appendChild(medoc_name);
                     medoc_item.appendChild(medco_desc);
@@ -181,10 +182,7 @@ function Pharnacie() {
                             <h2>Infos</h2>
                             <div className="detail-item">
                                 Email :<p id="email">{email}</p> cm
-                            </div>
-                            <div className="detail-item">
-                                localisation :<p id="poids" contentEditable="true">{localisation}</p>
-                            </div>
+                            </div>                           
                             <div className="detail-item">
                                 localisation :<p id="localisation" contentEditable="true">{localisation}</p>
                             </div>           

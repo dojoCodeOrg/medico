@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { auth,db,stopNetworkAcces } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { query, collection, getDocs, where, doc } from "firebase/firestore";
+import { updateDoc} from "firebase/firestore";
 
 import LoadingSpinner from "../loadSpinner/LoadingSpinner";
 import "./medicament.css"
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import { async } from "@firebase/util";
 
 
 function Medicament() {
@@ -22,13 +24,17 @@ function Medicament() {
     const [photo, setPhoto] = useState();
     const [name, setName] = useState("");
     const [userid, setUid] = useState("");
+    const [medicaments, setMedicaments] = useState("");
+    const [userMedicaments, setUserMedicaments] = useState("");
 
 
     let medicamentID = null;
     let pharmacieid = null;
+    let pharmaciename= null;
     try {
-        pharmacieid = window.location.href.split('#')[1];
+        pharmacieid = window.location.href.split('#')[1].split('!')[0];
         medicamentID = window.location.href.split('?')[1].split('#')[0];
+        pharmaciename = window.location.href.split('!')[1];
     } catch (error) {
         console.log(error)
     }
@@ -61,12 +67,14 @@ function Medicament() {
             const doc = await getDocs(q);
             const data = doc.docs[0].data();          
             setType(data.type);
+            setUserMedicaments(data.medicaments);
             
         } catch (err) {
             try {
                 const qs = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
                 const docs = await getDocs(qs);
                 const datas = docs.docs[0].data();
+                setName(datas.name);
                 // console.error(err);
                 setType(datas.type);
             } catch (error) {
@@ -91,6 +99,7 @@ function Medicament() {
                 medicament.push(tempMedicament);
             });
             medicament = medicament[0];
+            setMedicaments(medicament);
 
             medicament.forEach((item) => {
                 if (Object.keys(item)[0] === medicamentID) {   
@@ -104,7 +113,39 @@ function Medicament() {
             console.log(error);
         }  
         setIsLoading(false);
+    };
+
+
+    const addMedicamentToUserMedicament = async () => {
+        console.log(name);
+        userMedicaments.push(`${pharmacieid}?${medicamentID}`)
+        console.log(userMedicaments);
+        const userDocByUsername = doc(db, "users", name);
+        await updateDoc(userDocByUsername, {
+            medicaments: userMedicaments
+        });
+        alert("Medicament ajouter avec succes !!!");
+        window.location.href = `/medicaments`;
     }
+
+    const deleteMedicament = async () => {
+        console.log(medicaments);
+        console.log(medicamentID);
+        let newMedicament = [];
+        medicaments.forEach((item) => {
+            console.log(item)
+            if (Object.keys(item)[0] != medicamentID) {   
+                newMedicament.push(item)
+            };
+        });
+        console.log(newMedicament);
+        console.log(pharmaciename);
+        const userDocByUsername = doc(db, "pharmacies", pharmaciename);
+        await updateDoc(userDocByUsername, {
+            medicaments: newMedicament
+        });
+        window.location.href = `/pharmacie?${pharmaciename}#${user?.uid}`;
+    };
 
     useEffect(() => {        
         if (loading) return;
@@ -129,7 +170,7 @@ function Medicament() {
                         <h1>{medicamentName}</h1>
                         <p>{medicamentDescription}</p>
                         <p>{medicamentPrice}</p>
-                        <button>Ajouter au panier</button>
+                        <button onClick={addMedicamentToUserMedicament}>Ajouter au panier</button>
                     </div>
                 </div>
                 <Footer />
@@ -148,6 +189,7 @@ function Medicament() {
                         <p>{medicamentDescription}</p>
                         <p>{medicamentPrice}</p>
                     </div>
+                    <button className="del-medoc" onClick={deleteMedicament}>supprimer le medicament</button>
                 </div>
                 <Footer />
             </>

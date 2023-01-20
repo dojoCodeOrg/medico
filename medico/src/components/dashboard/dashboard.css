@@ -128,6 +128,9 @@
 
 
 /* -------------Pharmacie-------------- */
+.medoc-item img {
+    max-width: 150px;
+}
 .medoc-item {
     display: grid;
     margin: 10px 0;
@@ -137,4 +140,9 @@
 }
 .medoc-name, .medoc-description, .medoc-price {
     margin: 5px 0;
+}
+@media screen and (max-width: 400px) {
+    #medoc_area_all {
+        grid-template-columns: 1fr 1fr;
+    }
 }
