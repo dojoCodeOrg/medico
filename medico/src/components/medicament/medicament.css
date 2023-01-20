@@ -15,11 +15,16 @@
     display: flex;
     margin: 0 30px;
 }
+
+.med img, .medoc img {
+    max-width: 200px;
+}
+
 #medoc_area_all {
     display: grid;
     margin: 30px 30px;
     gap: 2rem;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 .med-content {
     display: grid;
@@ -36,7 +41,7 @@
     border-radius: 5px;
     color: white;
 }
-.medoc-content button {
+.medoc-content button, .del-medoc {
     margin: 20px 0;
     padding: 10px 25px;
     border: none;
@@ -54,4 +59,16 @@
     border-radius: 5px;
     color: white;
     text-decoration: none;
+}
+
+@media screen and (max-width: 580px) {
+    .med {
+        display: grid;
+    }
+    .medoc {
+        display: grid;
+    }
+    #medoc_area_all {
+        grid-template-columns: 1fr;
+    }
 }

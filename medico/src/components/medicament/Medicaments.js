@@ -59,7 +59,7 @@ function Medicaments() {
             medoc_area.innerHTML = "";
 
             medicament.forEach((item) => {                    
-                const ids = Object.keys(item);
+                let ids = Object.keys(item);
                     let medoc_item = document.createElement('div');
                     medoc_item.classList.add('medoc-item');
 
