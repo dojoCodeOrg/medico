@@ -118,7 +118,7 @@ function Medicament() {
 
     const addMedicamentToUserMedicament = async () => {
         console.log(name);
-        userMedicaments.push(`${pharmacieid}?${medicamentID}`)
+        userMedicaments.push(`${pharmaciename}!${pharmacieid}?${medicamentID}&${medicamentPrice}@${medicamentName}`)
         console.log(userMedicaments);
         const userDocByUsername = doc(db, "users", name);
         await updateDoc(userDocByUsername, {
