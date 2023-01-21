@@ -16,6 +16,13 @@
     background-color: rgba(199, 196, 196, 0.479);
     border-radius: 5px;
 }
+.med-name {
+    text-decoration: underline;
+}
+.panier-item-content span {
+    margin: 0 0 0 10px;
+    text-decoration: none !important;
+}
 .user-detail {
     display: flex;
     justify-content: center;
@@ -92,7 +99,7 @@
     font-size: 14px;
     opacity: 0.7;
     margin: 14px 0;
-    justify-content: left;
+    justify-content: space-between;
     padding: 10px 10px;
     border-radius: 5px;
     border: 1px solid #6C63FF;

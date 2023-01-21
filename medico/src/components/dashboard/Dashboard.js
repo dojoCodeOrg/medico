@@ -8,6 +8,8 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import LoadingSpinner from "../loadSpinner/LoadingSpinner";
 import "./dashboard.css";
+import Medicament from "../medicament/Medicament";
+import { async } from "@firebase/util";
 
 function Dashboard() {
     const [user, loading] = useAuthState(auth);
@@ -22,7 +24,8 @@ function Dashboard() {
     const [lastSeen, setLastSeen]= useState('');
     const [creationTime, setCreationTime] = useState('');
     const [description, setDescription] = useState('');
-    const [type, setType] = useState('')
+    const [type, setType] = useState('');
+    const [userMedicaments, setUserMedicaments] = useState("");
 
     let username = null;
     let userid = null;
@@ -31,6 +34,24 @@ function Dashboard() {
         username = window.location.href.split('?')[1].split('#')[0].split('%20').join(' ');
     } catch (err) {
         console.log(err);
+    }
+
+    const updatePanier = async (element, medocs, ids) => {
+        console.log(element);
+        console.log(medocs);
+        console.log(ids);
+        let newUserPanier = [];
+        medocs.forEach((item, index) =>{
+            if (index != ids) {
+                newUserPanier.push(item);
+            }
+        })
+        console.log(newUserPanier);
+        const userDocByUsername = doc(db, "users", username);
+        await updateDoc(userDocByUsername, {
+            medicaments: newUserPanier
+        });
+        fetchUserInfo();
     }
 
     const fetchUserInfo = async () => {
@@ -51,7 +72,52 @@ function Dashboard() {
             setAge(data.age);
             setSexe(data.sexe);
             setType(data.type);
-            setDescription(data.description)
+            setDescription(data.description);
+            setUserMedicaments(data.medicaments);
+            let userMedicaments = data.medicaments;
+            
+            let panier = document.querySelector("#panier");
+            panier.innerHTML = "";
+            let h2 = document.createElement('div');
+            h2.classList.add('h2-panier');
+            h2.innerHTML = "Panier";
+            let btn_panier = document.createElement('div');
+            btn_panier.classList.add('commande-validator');
+            btn_panier.innerHTML = "Passer commande";
+            panier.appendChild(h2);
+
+            console.log(userMedicaments);
+            userMedicaments.forEach((element, index) => {
+
+                let item = document.createElement('div');
+                item.classList.add('panier-item');
+
+                let panier_item_content = document.createElement('div');
+                panier_item_content.classList.add('panier-item-content');
+
+                let firstP = document.createElement('p');
+                firstP.classList.add('med-name');
+                firstP.innerHTML = element.split('@')[1];                
+                let secondP = document.createElement('p');
+                secondP.innerHTML = `Chez : ${element.split('!')[0]}`;
+
+                let span = document.createElement('span');
+                span.innerHTML = `${element.split('&')[1].split('@')[0]} fcfa`;
+                
+                let remove = document.createElement('div');
+                remove.classList.add('remove-add-item-btn');
+                remove.innerHTML = '-';
+                remove.onclick = function() {updatePanier(element, userMedicaments, index)};
+                                
+                firstP.appendChild(span);
+                panier_item_content.appendChild(firstP);
+                panier_item_content.appendChild(secondP);
+                item.appendChild(panier_item_content);
+                item.appendChild(remove);
+
+                panier.appendChild(item);
+                panier.appendChild(btn_panier);
+            });
         } catch (err) {
             console.error(err);
         }
@@ -138,36 +204,8 @@ function Dashboard() {
                             <button className="dash-btn" onClick={logout}>Se deconnecter</button>
                         </div>
                     </div>   
-                    <div className="panier">
-                        <h2>Panier</h2>
-                        <div className="panier-item">
-                            <div className="panier-item-content">
-                                <p>Paracetamol x<span>1</span> <span>200fr</span></p>
-                                <p>Chez: xxxx</p>
-                            </div>
-                            <div className="remove-add-item-btn">
-                                -
-                            </div>
-                        </div>
-                        <div className="panier-item">
-                            <div className="panier-item-content">
-                                <p>Paracetamol x<span>1</span> <span>200fr</span></p>
-                                <p>Chez: xxxx</p>
-                            </div>
-                            <div className="remove-add-item-btn">
-                                -
-                            </div>
-                        </div>
-                        <div className="panier-item">
-                            <div className="panier-item-content">
-                                <p>Paracetamol x<span>1</span> <span>200fr</span></p>
-                                <p>Chez: xxxx</p>
-                            </div>
-                            <div className="remove-add-item-btn">
-                                -
-                            </div>
-                        </div>
-                        <button className="commande-validator">Passer commande</button>
+                    <div id="panier" className="panier">
+                       
                     </div>                             
             </div> 
 
