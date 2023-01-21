@@ -43,6 +43,7 @@
 }
 .medoc-content button, .del-medoc {
     margin: 20px 0;
+    cursor: pointer;
     padding: 10px 25px;
     border: none;
     background-color: #6C63FF;

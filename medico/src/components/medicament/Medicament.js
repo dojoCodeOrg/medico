@@ -125,7 +125,7 @@ function Medicament() {
             medicaments: userMedicaments
         });
         alert("Medicament ajouter avec succes !!!");
-        window.location.href = `/medicaments`;
+        // window.location.href = `/medicaments`;
     }
 
     const deleteMedicament = async () => {
