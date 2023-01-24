@@ -19,7 +19,7 @@ function Footer() {
             <footer>
                 <div class="content-text">
                     <div class="text1">
-                        <h1 class="medico">Medico</h1>
+                        <h1 class="medico">Pharma Home</h1>
                         <ul>
                             <li className="el-hover-footer" ><a href="mailto:hamedcuenca5@gmail.com">Contact</a></li>
                         </ul>

@@ -144,10 +144,10 @@ function Home() {
             <Header />
 
             <div className="home-client">
-                <p className="client-hp">Bienvenue sur Medico client {name}</p>
+                <p className="client-hp">Bienvenue sur Pharma Home client {name}</p>
                 <div className="home-client-hero-section">
                     <div className="hero-content">
-                        <h1 className="hero-h1">Medico</h1>
+                        <h1 className="hero-h1">Pharma Home</h1>
                         <p className="hero-p">In publishing and graphic design, Lorem ipsum is a placeholder
                      text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p>
                     </div>
@@ -193,7 +193,7 @@ function Home() {
             <Header />
                 <div className="home-client">
                     <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                    <p className="client-hp">Bienvenue sur Medico Pharnacie {name}</p>
+                    <p className="client-hp">Bienvenue sur Pharma Home Pharnacie {name}</p>
                     <button onClick={switchToPharmacieProfile} className="gard-button">Aller vers le Profil</button>
                     <br></br><br></br><br></br><br></br><br></br><br></br>
                 </div>
