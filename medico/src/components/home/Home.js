@@ -133,7 +133,7 @@ function Home() {
         fetchUserInfo();
         setTimeout(() => { 
             fetchMedicaments();
-        }, 2000);
+        }, 100);
     }, [user, loading]);
 
 

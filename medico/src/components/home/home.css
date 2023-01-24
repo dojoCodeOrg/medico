@@ -61,6 +61,7 @@
     padding: 10px 25px;
     border: none;
     background-color: #6C63FF;
+    cursor: pointer;
     border-radius: 5px;
     color: white;
 }
