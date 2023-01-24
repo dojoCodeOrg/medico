@@ -132,7 +132,7 @@ function Dashboard() {
         const csexe = document.querySelector('#sexe').textContent;
         const cdescription = document.querySelector('#description').textContent;
         if (cpoids === poids && ctaille === taille && cage === age && csexe === sexe && cdescription === description) {
-            alert('aucun modification aporte');
+            alert('aucun modification ajouter');
             return false;
         } else {
             setPoids(cpoids);
