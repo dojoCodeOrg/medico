@@ -50,7 +50,7 @@ function Header() {
         window.location.href = `/pharmacie#${userid}`
     }
     function switchToHome() {
-        window.location.href = `/`;
+        window.location.href = `/u`;
     }
     function switchToSign() {
         window.location.href = `/sign`;

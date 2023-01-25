@@ -72,7 +72,8 @@ const signInWithGoogle = async (param) => {
             sexe: sexe,
           });
         }
-        console.log("sign sucess");
+        console.log("sign sucess as user");
+        window.location.href = "/u";
       }
     } catch (err) {
       console.error(err);
@@ -108,7 +109,8 @@ const signInWithGoogle = async (param) => {
             pharmaciePhoto: userp.photoURL,       
           });
         }
-        console.log("sign sucess");
+        console.log("sign sucess as pharmacie");
+        window.location.href = "/p";
       }
     } catch (err) {
       console.error(err);

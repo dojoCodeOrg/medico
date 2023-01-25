@@ -11,6 +11,7 @@ import Privacy from "./components/privacyPolicy/privacyPolicy";
 import NotFound from "./components/notFound/NotFound";
 import Proximite from "./components/proximite/Proximite";
 import Medicaments from "./components/medicament/Medicaments";
+import PharmacieHome from "./components/home/PharmacieHome";
 
 
 function App() {
@@ -19,8 +20,10 @@ function App() {
       <Router>
         <Routes>
           <Route path='*' element={<NotFound />}/>
-          <Route exact path="/" element={<Home />} /> 
-          <Route exact path="/landing" element={<Landing />} />   
+          <Route exact path="/" element={<Sign />} /> 
+          <Route exact path="/landing" element={<Landing />} /> 
+          <Route exact path="/u" element={<Home />} />
+          <Route exact path="/p" element={<PharmacieHome />} />   
           <Route exact path="/sign" element={<Sign />} />
           <Route exact path="/medicament" element={<Medicament />} />
           <Route exact path="/medicaments" element={<Medicaments />} />

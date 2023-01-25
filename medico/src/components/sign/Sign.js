@@ -13,15 +13,23 @@ function Sign() {
     const navigate = useNavigate();
 
     function signClient() {
-      signInWithGoogle('user');
+      if (user) {
+        navigate("/u"); 
+      } else {
+        signInWithGoogle('user');
+      }
     }
     function signPharmacie() {
-      signInWithGoogle('pharmacie');
+      if (user) {
+        navigate("/p"); 
+      } else {
+        signInWithGoogle('pharmacie');
+      }
     }
     
     useEffect(() => {
       if (loading) return;
-      if (user) navigate("/");
+      // if (user) navigate("/");
     }, [user, loading]);
 
 

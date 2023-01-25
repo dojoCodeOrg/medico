@@ -163,7 +163,6 @@ function Pharnacie() {
     return (
         <>                                           
 
-            <Header />              
             {isLoading ? <LoadingSpinner /> : fetchPharmacieMedicament}
             
             <div id="user-dash">
@@ -202,7 +201,6 @@ function Pharnacie() {
                     </div>                             
             </div> 
 
-            <Footer />
         </>
     )
 }

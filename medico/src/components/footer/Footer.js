@@ -7,7 +7,7 @@ function Footer() {
     const [user, loading] = useAuthState(auth);
  
     function switchToHome() {
-        window.location.href = `/`;
+        window.location.href = `/u`;
     }     
     function switchToPrivacy() {
         window.location.href = '/privacy-policy';
