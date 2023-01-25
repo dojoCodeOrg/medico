@@ -50,7 +50,7 @@ function Header() {
         window.location.href = `/pharmacie#${userid}`
     }
     function switchToHome() {
-        window.location.href = `/`;
+        window.location.href = `/u`;
     }
     function switchToSign() {
         window.location.href = `/sign`;
@@ -65,7 +65,7 @@ function Header() {
         <>
             <header>
                 <section id="logo">
-                    <h3 onClick={switchToHome} id="medico">Medico</h3>
+                    <h3 onClick={switchToHome} id="medico">Pharma Home</h3>
                 </section>
                 <section id="header-btn">
                     <button onClick={switchToSign} type="button" class="btn-primary-header" id="login-btn">Se connecter</button>
@@ -79,7 +79,7 @@ function Header() {
                 <>
                     <header>                   
                         <section id="logo">
-                            <h3 onClick={switchToHome} id="medico">Medico</h3>
+                            <h3 onClick={switchToHome} id="medico">Pharma Home</h3>
                         </section>
                         <section id="img-btn">
                             <img id="user-img" onClick={switchToDashboardAsUser} src={photo} />
@@ -93,7 +93,7 @@ function Header() {
                 <>    
                     <header>                   
                             <section id="logo">
-                                <h3 onClick={switchToHome} id="medico">Medico</h3>
+                                <h3 onClick={switchToHome} id="medico">Pharma Home</h3>
                             </section>
                             <section id="img-btn">
                                 <img id="user-img" onClick={switchToDashboardAsPharmacie} src={photo} />

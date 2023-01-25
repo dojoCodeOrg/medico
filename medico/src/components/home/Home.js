@@ -98,20 +98,9 @@ function Home() {
             const data = doc.docs[0].data();          
             setType(data.type);
             
-        } catch (err) {
-            try {
-                setUid(user.uid)
-                setName(user.displayName);
-                setPhoto(user.photoURL);
-                const qs = query(collection(db, "pharmacies"), where("uid", "==", user?.uid));
-                const docs = await getDocs(qs);
-                const datas = docs.docs[0].data();
-                // console.error(err);
-                setType(datas.type);
-            } catch (error) {
-                console.log(error)
-            }
+        } catch (err) {        
             console.log(err);
+            // window.location.href = "/p";
         }
     }; 
  
@@ -136,18 +125,16 @@ function Home() {
         }, 100);
     }, [user, loading]);
 
-
-    if (type === 'user') {
         return (
             <>
             {isLoading ? <LoadingSpinner /> : fetchMedicaments}
             <Header />
 
             <div className="home-client">
-                <p className="client-hp">Bienvenue sur Medico client {name}</p>
+                <p className="client-hp">Bienvenue sur Pharma Home client {name}</p>
                 <div className="home-client-hero-section">
                     <div className="hero-content">
-                        <h1 className="hero-h1">Medico</h1>
+                        <h1 className="hero-h1">Pharma Home</h1>
                         <p className="hero-p">In publishing and graphic design, Lorem ipsum is a placeholder
                      text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p>
                     </div>
@@ -186,21 +173,7 @@ function Home() {
             
             <Footer />
             </>
-        )        
-    } else if (type === 'pharmacie') {
-        return (
-            <>
-            <Header />
-                <div className="home-client">
-                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-                    <p className="client-hp">Bienvenue sur Medico Pharnacie {name}</p>
-                    <button onClick={switchToPharmacieProfile} className="gard-button">Aller vers le Profil</button>
-                    <br></br><br></br><br></br><br></br><br></br><br></br>
-                </div>
-            <Footer />
-            </>
-        )   
-    }
+        )            
 }
 
 export default Home;
