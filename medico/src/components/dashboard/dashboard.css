@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+#user-dash {
+    display: flex;
+    justify-content: center;
+    gap: 7rem;
+    padding: 50px 50px;
+}
+.btns {
+    display: grid;
+}
+.user-dash-content {
+    display: block;
+    justify-content: left;
+    padding: 35px 30px;
+    height: 100%;
+    background-color: rgba(199, 196, 196, 0.479);
+    border-radius: 5px;
+}
+.med-name {
+    text-decoration: underline;
+}
+.panier-item-content span {
+    margin: 0 0 0 10px;
+    text-decoration: none !important;
+}
+.user-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    /* margin: 0 0 20px 0; */
+}
+.image-dash img {
+    border-radius: 50px;
+    max-width: 90%;
+}
+.infos-dash {
+    display: grid;
+    row-gap: 10px;
+}
+.infos-dash p {
+    font-size: 14px;
+}
+.user-detail-editable {
+    margin: 10px 0 30px 0;
+    display: grid;
+    row-gap: 10px;
+}
+.detail-item {
+    display: flex;
+    gap: 7px;
+}
+.detail-item p {
+    text-decoration: underline;
+    min-width: 20px;
+}
+.dash-btn {
+    border: none;
+    padding: 10px 20px;
+    background-color: #6C63FF;
+    cursor: pointer;
+    color: white;
+    margin: 0 0 10px 0;
+    border-radius: 4px;
+}
+.commande-validator {
+    opacity: 0.7;
+    background-color: #6C63FF;
+    cursor: pointer;
+    color: white;
+    margin: 0 0 10px 0;
+    border-radius: 4px;
+    border: none;
+    padding: 10px 20px;
+}
+.commande-validator:hover {
+    background-color: #6C63FF;
+    opacity: 1;
+}
+.panier-item:hover {
+    background-color: #6C63FF;
+    opacity: 1;
+}
+
+.panier {
+    display: block;
+    justify-content: left;
+    /* background-color: rgba(199, 196, 196, 0.479); */
+    border-radius: 5px;
+    padding: 20px 30px;
+    height: 100%;
+}
+.panier h2 {
+    margin: 10px 0;
+}
+.panier-item {
+    display: flex;
+    gap: 2rem;
+    font-size: 14px;
+    opacity: 0.7;
+    margin: 14px 0;
+    justify-content: space-between;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid #6C63FF;
+}
+.remove-add-item-btn {
+    padding: 5px 20px;
+    background-color: #6C63FF;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+}
+.panier button {
+    border: none;
+    padding: 10px 20px;
+    background-color: #6C63FF;
+    cursor: pointer;
+    color: white;
+    margin: 0 0 10px 0;
+    border-radius: 4px;
+}
+@media screen and (max-width: 900px) {
+    #user-dash {
+        display: grid;       
+        gap: 2.5rem;
+        padding: 30px 15px;
+    }
+}
+
+
+
+
+
+
+/* -------------Pharmacie-------------- */
+.medoc-item img {
+    max-width: 150px;
+}
+.medoc-item {
+    display: grid;
+    margin: 10px 0;
+    border: 1px solid rgba(199, 196, 196, 0.479);
+    border-radius: 5px;
+    padding: 15px 10px;
+}
+.medoc-name, .medoc-description, .medoc-price {
+    margin: 5px 0;
+}
+@media screen and (max-width: 400px) {
+    #medoc_area_all {
+        grid-template-columns: 1fr 1fr;
+    }
+}

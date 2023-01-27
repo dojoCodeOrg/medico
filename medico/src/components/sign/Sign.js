@@ -13,15 +13,23 @@ function Sign() {
     const navigate = useNavigate();
 
     function signClient() {
-      signInWithGoogle('user');
+      if (user) {
+        navigate("/u"); 
+      } else {
+        signInWithGoogle('user');
+      }
     }
     function signPharmacie() {
-      signInWithGoogle('pharmacie');
+      if (user) {
+        navigate("/p"); 
+      } else {
+        signInWithGoogle('pharmacie');
+      }
     }
     
     useEffect(() => {
       if (loading) return;
-      if (user) navigate("/");
+      // if (user) navigate("/");
     }, [user, loading]);
 
 
@@ -34,15 +42,15 @@ function Sign() {
                         <div class="image-sign">
                             <img src={group1} alt="" />
                         </div>
-                        <h1 className="h1-sign">Medico Client</h1>
+                        <h1 className="h1-sign">Pharma Home Client</h1>
                         <p className="p-sign">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
-                        <button className="button-sign" onClick={signClient}>Client</button>
+                        <button className="button-sign button-client-sign" onClick={signClient}>Client</button>
                     </div>
                     <div class="pharmacie">
                         <div class="image-sign">
                             <img src={group2} alt="" />
                         </div>
-                        <h1 className="h1-sign">Medico Pharmacie</h1>
+                        <h1 className="h1-sign">Pharma Home Pharmacie</h1>
                         <p className="p-sign">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
                         <button className="button-sign button-pharmacie" onClick={signPharmacie}>Pharmacie</button>
                     </div>

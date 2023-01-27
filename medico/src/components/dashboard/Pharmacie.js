@@ -6,10 +6,16 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { doc, updateDoc} from "firebase/firestore";
 import { async } from "@firebase/util";
 
+import "./dashboard.css";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import LoadingSpinner from "../loadSpinner/LoadingSpinner";
+
 function Pharnacie() {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
     const [photo, setPhoto] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const [name, setName] = useState("");
     const [lastSeen, setLastSeen]= useState('');
     const [creationTime, setCreationTime] = useState('');
@@ -26,37 +32,70 @@ function Pharnacie() {
     try {
         pharmacieid = window.location.href.split('#')[1];
         pharmaciename = window.location.href.split('?')[1].split('#')[0].split('%20').join(' ');
+        console.log(pharmaciename);
     } catch (err) {
         console.log(err);
     }
 
     const fetchPharmacieMedicament = async () => {
-        const medicament_area = document.querySelector('#medicament-area');
-        medicament.forEach(i => {
-            let item = document.createElement('div');
-            item.classList.add('medicament-item');
+        setIsLoading(true);
+        let medicament = [];
+        try {
+            const q = query(collection(db, "pharmacies"), where("uid", "==", pharmacieid));
+            const doc = await getDocs(q);
+            const data = doc.docs;
+            data.forEach((item) => {
+                if (!item.data().medicaments) {
+                    item.data().medicaments = {};
+                }
+                const tempMedicament = item.data().medicaments;
+                medicament.push(tempMedicament);
+            });
+            medicament = medicament[0];
+            console.log(medicament);
 
-            let name = document.createElement('a');
-            name.classList.add('medicament-name');
-            name.innerHTML = i.name;
-            name.href = `/medicament?${i.name}`;
-            let description = document.createElement('div');
-            description.classList.add('medicament-description');
-            description.innerHTML = i.description;
-            let image = document.createElement('img');
-            image.classList.add('medicament-image');
-            image.src = i.photo;
-            let price = document.createElement('div');
-            price.classList.add('medicament-price');           
-            price.innerHTML = i.price;
+            const medoc_area = document.querySelector('#medicament-area');
+            medoc_area.innerHTML = "";
 
-            item.appendChild(name);
-            item.appendChild(description);
-            item.appendChild(image);
-            item.appendChild(price);
+            medicament.forEach((item) => {        
+                let ids = Object.keys(item);
+                    let medoc_item = document.createElement('div');
+                    medoc_item.classList.add('medoc-item');
 
-            medicament_area.appendChild(item);
-        });
+                    let medoc_name = document.createElement('div');
+                    medoc_name.classList.add('medoc-name');
+                    medoc_name.innerHTML = item[ids].name;
+
+                    let medco_desc = document.createElement('div');
+                    medco_desc.classList.add('medoc-description');
+                    medco_desc.innerHTML = `Description : ${item[ids].description}`;
+
+                    let medco_photo = document.createElement('a');
+                    medco_photo.classList.add('medoc-photot');
+                    medco_photo.src = item[ids].photo;
+
+                    let medco_price = document.createElement('div');
+                    medco_price.classList.add('medoc-price');
+                    medco_price.innerHTML = `Prix : ${item[ids].price} fcfa`;
+
+                    let medoc_href = document.createElement('a');
+                    let linkText = document.createTextNode("voir");
+                    medoc_href.appendChild(linkText);
+                    medoc_href.href = `/medicament?${Object.keys(item)[0]}#${pharmacieid}!${pharmaciename}`;
+
+                    medoc_item.appendChild(medoc_name);
+                    medoc_item.appendChild(medco_desc);
+                    medoc_item.appendChild(medco_price);
+                    medoc_item.appendChild(medoc_href);
+                    medoc_item.appendChild(medco_photo);
+
+                    medoc_area.appendChild(medoc_item);
+                    ids = ids+1;
+            });
+        } catch (error) {
+            console.log(error);
+        };
+        setIsLoading(false);
     };   
     
 
@@ -122,21 +161,46 @@ function Pharnacie() {
     }, [user, loading]);
         
     return (
-        <>  
-            <img referrerpolicy="no-referrer" src={photo} alt='Photo' />
-            <p id="name" contentEditable="true">{name}</p>
-            <p>inscrit le : {creationTime}</p>
-            <p>derniere connexion : {lastSeen}</p>
-            <h2>Mes info</h2>
-            <p id="email">{email}</p>
-            localisation :<p id="localisation" contentEditable="true">{localisation}</p>
-            description :<p id="description" contentEditable="true">{description}</p>
-            <button onClick={updatePharmacieProfile}>enregistrer les modifs</button>
+        <>                                           
 
-            <h1>Medicaments</h1>
-            <div id="medicament-area"></div>
-            <button onClick={switchToCreateMedicament}>ajouter un medicament</button>
-            <button onClick={logout}>se deconnecter</button>
+            {isLoading ? <LoadingSpinner /> : fetchPharmacieMedicament}
+            
+            <div id="user-dash">
+                    <div class="user-dash-content">
+                        <div class="user-detail">
+                            <div class="image-dash">
+                                <img referrerpolicy="no-referrer" src={photo} alt="Photo"/>
+                            </div>
+                            <div class="infos-dash">
+                                <p id="name" contentEditable="true" >{name}</p>
+                                <p>inscrit le : {creationTime}</p>
+                                {/* <p>Derniere connexion : {lastSeen}</p> */}
+                            </div>
+                        </div>   
+                        <div class="user-detail-editable">
+                            <h2>Infos</h2>
+                            <div className="detail-item">
+                                Email :<p id="email">{email}</p> cm
+                            </div>                           
+                            <div className="detail-item">
+                                localisation :<p id="localisation" contentEditable="true">{localisation}</p>
+                            </div>           
+                            <div className="detail-item">
+                                description :<p id="description" contentEditable="true">{description}</p>
+                            </div>
+                        </div>    
+                        <div className="btns">
+                            <button className="dash-btn" onClick={updatePharmacieProfile}>Enregistrer les modifications</button>
+                            <button className="dash-btn" onClick={logout}>Se deconnecter</button>
+                        </div>
+                    </div>   
+                    <div className="panier">
+                        <h1>Medicaments</h1>
+                        <div id="medicament-area"></div>
+                        <button onClick={switchToCreateMedicament}>ajouter un medicament</button>
+                    </div>                             
+            </div> 
+
         </>
     )
 }
