@@ -34,7 +34,8 @@ function PharmacieHome() {
                 const datas = docs.docs[0].data();
                 setType(datas.type);
             } catch (error) {
-                console.log(error)
+                console.log(error);
+                window.location.href = "/u";
             }       
     }; 
  
