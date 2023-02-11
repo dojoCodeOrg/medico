@@ -118,6 +118,7 @@ function Pharnacie() {
             setLocalisation(data.localisation);
         } catch (err) {
             console.error(err);
+            window.location.href = "/u";
         }
     }; 
 
