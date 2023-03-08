@@ -42,7 +42,7 @@ function Sign() {
                         <div class="image-sign">
                             <img src={group1} alt="" />
                         </div>
-                        <h1 className="h1-sign">Pharma Home Client</h1>
+                        <h1 className="h1-sign">Client</h1>
                         <p className="p-sign">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
                         <button className="button-sign button-client-sign" onClick={signClient}>Client</button>
                     </div>
@@ -50,7 +50,7 @@ function Sign() {
                         <div class="image-sign">
                             <img src={group2} alt="" />
                         </div>
-                        <h1 className="h1-sign">Pharma Home Pharmacie</h1>
+                        <h1 className="h1-sign">Pharmacie</h1>
                         <p className="p-sign">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, voluptatibus commodi animi dolore reprehenderit, minus in natus id, culpa quam eligendi iusto amet nesciunt quisquam deserunt soluta atque aspernatur quos!</p>
                         <button className="button-sign button-pharmacie" onClick={signPharmacie}>Pharmacie</button>
                     </div>
